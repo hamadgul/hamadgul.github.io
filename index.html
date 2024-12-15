@@ -13,83 +13,136 @@
             color: #333;
             line-height: 1.6;
         }
+
         header {
-            background: #1e1e2f;
+            background: linear-gradient(135deg, #1e1e2f, #3b3b5f);
             color: #fff;
             text-align: center;
-            padding: 60px 20px;
+            padding: 150px 20px;
         }
+
         header h1 {
-            font-size: 3em;
+            font-size: 4em;
             margin: 0;
         }
+
         header p {
-            font-size: 1.2em;
+            font-size: 1.5em;
             margin-top: 10px;
         }
+
+        header .cta-button {
+            margin-top: 20px;
+            background: #ff6f61;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+        }
+
+        header .cta-button:hover {
+            background: #e0554a;
+        }
+
         nav {
             display: flex;
             justify-content: center;
-            background: #333;
-            padding: 10px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+
         nav a {
-            color: #fff;
+            color: #333;
             text-decoration: none;
             margin: 0 15px;
             font-size: 1em;
+            padding: 15px 10px;
         }
+
         nav a:hover {
             color: #ff6f61;
         }
+
         section {
             max-width: 1200px;
             margin: 40px auto;
             padding: 20px;
         }
-        .project {
-            margin-bottom: 60px;
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
-        .project h2 {
-            font-size: 2em;
-            margin-bottom: 15px;
-            color: #1e1e2f;
+
+        .project-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
         }
-        .project p {
-            font-size: 1.1em;
+
+        .project-card:hover {
+            transform: translateY(-10px);
         }
+
+        .project-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            font-size: 1em;
+        }
+
         .skills {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            text-align: center;
         }
+
         .skill {
             background: #f4f4f4;
-            padding: 15px 20px;
-            margin: 10px;
+            padding: 20px;
             border-radius: 8px;
             font-size: 1em;
             font-weight: bold;
             color: #333;
+            transition: background 0.3s ease;
         }
-        footer {
+
+        .skill:hover {
+            background: #e9e9e9;
+        }
+
+        .contact {
+            text-align: center;
+            padding: 40px 20px;
             background: #1e1e2f;
+            color: #fff;
+        }
+
+        .contact p {
+            font-size: 1.2em;
+        }
+
+        .contact a {
+            color: #ff6f61;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        footer {
+            background: #333;
             color: #fff;
             text-align: center;
             padding: 20px;
-        }
-        footer p {
-            margin: 0;
-        }
-        .linkedin {
-            margin-top: 20px;
-        }
-        .linkedin a {
-            text-decoration: none;
-        }
-        .linkedin img {
-            width: 40px;
-            height: 40px;
         }
     </style>
 </head>
@@ -97,6 +150,7 @@
     <header>
         <h1>Hamad Gul</h1>
         <p>Product Developer | Innovator | Problem Solver</p>
+        <a href="#projects" class="cta-button">View My Work</a>
     </header>
     <nav>
         <a href="#projects">Projects</a>
@@ -105,29 +159,31 @@
     </nav>
     <section id="projects">
         <h2>Projects</h2>
-        <div class="project">
-            <h2>Real World Data Pipeline <span class="highlight">(B2B)</span></h2>
-            <p>Developed an ETL pipeline at Freenome, taking it from concept to launch. The pipeline processed RWD from diverse sources and formats, standardizing it into a single Common Data Model (CDM). This unified data powered machine learning models and analyses for early cancer detection. The product served internal research teams and external partners by normalizing raw data received from them and returning it in a standardized format, while retaining the data for internal research purposes.</p>
-        </div>
-        <div class="project">
-            <h2>Analysis Pipeline <span class="highlight">(B2B)</span></h2>
-            <p>Built AI-powered diagnostic software for Freenome's flagship blood test kit product, designed to assess colorectal cancer (CRC) risk. Once patient samples were received, they were processed in the lab and analyzed through this AI pipeline. Machine learning models evaluated the data to determine a risk score, enabling early identification of patients at risk for CRC.</p>
-        </div>
-        <div class="project">
-            <h2>Vintus Ordering Web Product <span class="highlight">(B2C)</span></h2>
-            <p>Managed the development and optimization of a customer-facing web product for order management. Collaborated with development, sales, and marketing teams to design a user-friendly portal where customers could place orders, track order statuses, and access detailed product information.</p>
-        </div>
-        <div class="project">
-            <h2>AI Chatbot Mobile App <span class="highlight">(B2C)</span></h2>
-            <p>Led feature prioritization, user research, and design decisions for the AskAetna Student Health App, a widely used healthcare chatbot mobile app. Focused on enhancing user experience and delivering meaningful features based on user feedback and market needs.</p>
-        </div>
-        <div class="project">
-            <h2>Certification Tracking Database <span class="highlight">(Internal)</span></h2>
-            <p>Designed and launched a Certification Tracking Database App from the ground up, streamlining the internal certification submission process. This tool reduced project staffing times by enabling managers to quickly access a centralized database of employees with specific training or certifications, optimizing resource allocation and team assembly.</p>
-        </div>
-        <div class="project">
-            <h2>MagicBoxer <span class="highlight">(Personal)</span></h2>
-            <p>Founder and sole developer of MagicBoxer, a mobile app featuring a smart packaging algorithm. The app helps users find the ideal shipping box for their items by calculating the best fit based on item dimensions. Responsible for end-to-end development, product management, and design of this innovative solution.</p>
+        <div class="projects">
+            <div class="project-card">
+                <h3>Real World Data Pipeline (B2B)</h3>
+                <p>Developed an ETL pipeline at Freenome, taking it from concept to launch. The pipeline processed RWD from diverse sources and formats, standardizing it into a single Common Data Model (CDM).</p>
+            </div>
+            <div class="project-card">
+                <h3>Analysis Pipeline (B2B)</h3>
+                <p>Built AI-powered diagnostic software for Freenome's flagship blood test kit product, designed to assess colorectal cancer (CRC) risk. Machine learning models evaluated the data to determine risk scores.</p>
+            </div>
+            <div class="project-card">
+                <h3>Vintus Ordering Web Product (B2C)</h3>
+                <p>Managed the development of a customer-facing web product for order management, collaborating with sales and marketing teams to deliver a user-friendly portal.</p>
+            </div>
+            <div class="project-card">
+                <h3>AI Chatbot Mobile App (B2C)</h3>
+                <p>Led feature prioritization and user research for the AskAetna Student Health App, focusing on enhancing user experience and delivering meaningful features.</p>
+            </div>
+            <div class="project-card">
+                <h3>Certification Tracking Database (Internal)</h3>
+                <p>Designed and launched a Certification Tracking Database App, streamlining the certification submission process and optimizing resource allocation.</p>
+            </div>
+            <div class="project-card">
+                <h3>MagicBoxer (Personal)</h3>
+                <p>Developed MagicBoxer, a mobile app featuring a smart packaging algorithm to help users find the ideal shipping box for their items.</p>
+            </div>
         </div>
     </section>
     <section id="skills">
@@ -140,14 +196,9 @@
             <div class="skill">Web and Mobile Development</div>
         </div>
     </section>
-    <section id="contact">
+    <section id="contact" class="contact">
         <h2>Contact</h2>
-        <p>Connect with me on LinkedIn:</p>
-        <div class="linkedin">
-            <a href="https://www.linkedin.com/in/hamad-gul/" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Profile">
-            </a>
-        </div>
+        <p>Connect with me on <a href="https://www.linkedin.com/in/hamad-gul/" target="_blank">LinkedIn</a></p>
     </section>
     <footer>
         <p>&copy; 2024 Hamad Gul. All rights reserved.</p>
