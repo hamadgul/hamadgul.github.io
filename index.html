@@ -300,6 +300,33 @@
             animation: blink 1s infinite;
             margin-left: 2px;
         }
+
+        .about-section {
+            max-width: 800px;
+            margin: 40px auto 0;
+            padding: 30px;
+            background: var(--secondary);
+            border-radius: 20px;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .about-section:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 16px rgba(0, 122, 255, 0.1);
+        }
+
+        .about-section h2 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
@@ -313,6 +340,10 @@
                 <p class="hero-subtitle">Product Manager | Innovator | Problem Solver</p>
                 <a href="#projects" class="cta-button">View My Work</a>
                 <div class="typing-text" id="typing-text"></div>
+                <div class="about-section" data-aos="fade-up" data-aos-delay="200">
+                    <h2>About Myself</h2>
+                    <p>I'm a Technical Product Manager with a diverse background working on various products, though my main focus is on Data Products. I started my career as a Software Engineer and Web Developer, but these days I'm all about bridging the gap between tech teams and users! I graduated from the University of Connecticut with a BS in Computer Science & Engineering in 2019.</p>
+                </div>
             </div>
         </div>
     </header>
