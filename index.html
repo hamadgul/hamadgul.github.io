@@ -4,213 +4,464 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamad Gul - Product Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
+        :root {
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --accent: #007AFF;
+            --secondary: #1c1c1e;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         header {
-            background: linear-gradient(135deg, #1e1e2f, #3b3b5f);
-            color: #fff;
-            text-align: center;
-            padding: 150px 20px;
-        }
-
-        header h1 {
-            font-size: 4em;
-            margin: 0;
-        }
-
-        header p {
-            font-size: 1.5em;
-            margin-top: 10px;
-        }
-
-        header .cta-button {
-            margin-top: 20px;
-            background: #ff6f61;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-size: 1.2em;
-            border-radius: 5px;
-        }
-
-        header .cta-button:hover {
-            background: #e0554a;
-        }
-
-        header img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-top: 20px;
-        }
-
-        nav {
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            align-items: center;
+            position: relative;
+            padding: 100px 0;
         }
 
-        nav a {
-            color: #333;
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 7vw;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--accent);
+            color: var(--text);
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 1em;
-            padding: 15px 10px;
-        }
-
-        nav a:hover {
-            color: #ff6f61;
-        }
-
-        section {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .project-card {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            border-radius: 30px;
+            font-weight: 500;
             transition: transform 0.3s ease;
         }
 
-        .project-card:hover {
-            transform: translateY(-10px);
+        .cta-button:hover {
+            transform: translateY(-2px);
         }
 
-        .project-card h3 {
-            font-size: 1.5em;
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 60px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .projects-grid .project-card {
+            background: var(--secondary);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+        .projects-grid .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 0;
+        }
+
+        .projects-grid .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.1);
+        }
+
+        .projects-grid .project-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .project-card .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card .project-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card.clickable {
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .project-card.clickable:hover .project-title {
+            color: var(--accent);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 16px rgba(0, 122, 255, 0.1);
+        }
+
+        .skill-card h3 {
+            color: var(--accent);
+            font-size: 1.2rem;
             margin-bottom: 10px;
         }
 
-        .project-card p {
-            font-size: 1em;
+        .skill-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
         }
 
-        .skills {
+        .certifications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .certification-card {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 2px solid transparent;
             text-align: center;
         }
 
-        .skill {
-            background: #f4f4f4;
-            padding: 20px;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: bold;
-            color: #333;
-            transition: background 0.3s ease;
+        .certification-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 16px rgba(0, 122, 255, 0.1);
         }
 
-        .skill:hover {
-            background: #e9e9e9;
+        .certification-card h3 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
         }
 
-        .contact {
+        .certification-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
             text-align: center;
-            padding: 40px 20px;
-            background: #1e1e2f;
-            color: #fff;
         }
 
-        .contact p {
-            font-size: 1.2em;
+        .social-links {
+            margin-top: 20px;
         }
 
-        .contact a {
-            color: #ff6f61;
+        .social-links a {
+            color: var(--text);
             text-decoration: none;
-            font-size: 1.2em;
+            margin: 0 15px;
+            font-size: 2.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
         }
 
         footer {
-            background: #333;
-            color: #fff;
+            padding: 40px 0;
             text-align: center;
-            padding: 20px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 40px;
+            border: 4px solid var(--accent);
+        }
+
+        .typing-text {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-top: 20px;
+            min-height: 24px;
+            font-weight: 500;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink 1s infinite;
+            margin-left: 2px;
         }
     </style>
 </head>
 <body>
+    <div class="cursor"></div>
+
     <header>
-        <h1>Hamad Gul</h1>
-        <p>Product Developer | Innovator | Problem Solver</p>
-        <img src="HH#63338342_Hamad_Gul.jpg" alt="Hamad Gul">
-        <a href="#projects" class="cta-button">View My Work</a>
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up">
+                <img src="/profile.jpg" alt="Hamad Gul" class="profile-image" data-aos="fade-up" onerror="this.onerror=null; console.error('Failed to load image'); this.style.display='none';">
+                <h1 class="hero-title">Hamad Gul</h1>
+                <p class="hero-subtitle">Product Manager | Innovator | Problem Solver</p>
+                <a href="#projects" class="cta-button">View My Work</a>
+                <div class="typing-text" id="typing-text"></div>
+            </div>
+        </div>
     </header>
-    <nav>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="projects">
-            <div class="project-card">
-                <h3>Real World Data Pipeline (B2B)</h3>
-                <p>Developed an ETL pipeline at Freenome, taking it from concept to launch. The pipeline processed RWD from diverse sources and formats, standardizing it into a single Common Data Model (CDM).</p>
-            </div>
-            <div class="project-card">
-                <h3>Analysis Pipeline (B2B)</h3>
-                <p>Built AI-powered diagnostic software for Freenome's flagship blood test kit product, designed to assess colorectal cancer (CRC) risk. Machine learning models evaluated the data to determine risk scores.</p>
-            </div>
-            <div class="project-card">
-                <h3>Vintus Ordering Web Product (B2C)</h3>
-                <p>Managed the development of a customer-facing web product for order management, collaborating with sales and marketing teams to deliver a user-friendly portal.</p>
-            </div>
-            <div class="project-card">
-                <h3>AI Chatbot Mobile App (B2C)</h3>
-                <p>Led feature prioritization and user research for the AskAetna Student Health App, focusing on enhancing user experience and delivering meaningful features.</p>
-            </div>
-            <div class="project-card">
-                <h3>Certification Tracking Database (Internal)</h3>
-                <p>Designed and launched a Certification Tracking Database App, streamlining the certification submission process and optimizing resource allocation.</p>
-            </div>
-            <div class="project-card">
-                <h3>MagicBoxer (Personal)</h3>
-                <p>Developed MagicBoxer, a mobile app featuring a smart packaging algorithm to help users find the ideal shipping box for their items.</p>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Product Portfolio</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="fade-up">
+                    <h3 class="project-title">Real World Data Pipeline (B2B)</h3>
+                    <p class="project-description">Developed an ETL pipeline at Freenome, taking it from concept to launch. The pipeline processed RWD from diverse sources and formats, standardizing it into a single Common Data Model (CDM).</p>
+                </div>
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="project-title">AI Diagnostic Software (B2B)</h3>
+                    <p class="project-description">Developed AI-powered diagnostic software for Freenome's flagship blood test kit product, designed to assess colorectal cancer (CRC) risk.</p>
+                </div>
+                <div class="project-card" data-aos="fade-up" data-aos-delay="500">
+                    <h3 class="project-title">Vintus Ordering Web Product (B2B)</h3>
+                    <p class="project-description">Managed the development of a customer-facing web product for order management, collaborating with sales and marketing teams.</p>
+                </div>
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="project-title">AI Chatbot Mobile App (B2C)</h3>
+                    <p class="project-description">Led feature prioritization and user research for the AskAetna Student Health App, focusing on enhancing user experience and delivering meaningful features.</p>
+                </div>
+                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="project-title">Certification Tracking Database App (Internal)</h3>
+                    <p class="project-description">Designed and launched a Certification Tracking Database App at Aetna, streamlining the certification submission process and optimizing resource allocation.</p>
+                </div>
+                <a href="https://github.com/Hammygul/MagicBoxer" target="_blank" class="project-card clickable" data-aos="fade-up" data-aos-delay="500">
+                    <h3 class="project-title">MagicBoxer (B2C)</h3>
+                    <p class="project-description">Founder and sole developer of MagicBoxer, a mobile app featuring a smart packaging algorithm. The app helps users find the ideal shipping box for their items by calculating the best fit based on item dimensions. Responsible for end-to-end development, product management, and design of this innovative solution.</p>
+                </a>
             </div>
         </div>
     </section>
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skills">
-            <div class="skill">ETL Development</div>
-            <div class="skill">Machine Learning</div>
-            <div class="skill">Product Management</div>
-            <div class="skill">User Research</div>
-            <div class="skill">Web and Mobile Development</div>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-aos="fade-up">
+                    <h3>Big Data & Analytics</h3>
+                    <p>Expert in data processing, ETL development, dashboards, and data visualization</p>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Product Management</h3>
+                    <p>Strategic technical product development, roadmap planning, agile leadership, and stakeholder management.</p>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>User Research</h3>
+                    <p>User-centered design and experience optimization</p>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>AI & Cloud Computing</h3>
+                    <p>Cloud architecture and infrastructure management with experience in deploying AI solutions across AWS & GCP.</p>
+                </div>
+            </div>
         </div>
     </section>
-    <section id="contact" class="contact">
-        <h2>Contact</h2>
-        <p>Connect with me on <a href="https://www.linkedin.com/in/hamad-gul/" target="_blank">LinkedIn</a></p>
+
+    <section id="certifications" class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Certifications</h2>
+            <div class="certifications-grid">
+                <div class="certification-card" data-aos="fade-up">
+                    <h3>SAFe Agilist</h3>
+                    <p>Certified SAFe® 5 Agilist</p>
+                </div>
+                <div class="certification-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>SAFe Product Manager</h3>
+                    <p>Certified SAFe® 5 Product Manager/Product Owner</p>
+                </div>
+                <div class="certification-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Google Cloud</h3>
+                    <p>Google Cloud Digital Leader Certified</p>
+                </div>
+                <div class="certification-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>HL7 FHIR</h3>
+                    <p>HL7 FHIR Certified Professional</p>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up" style="margin-bottom: 30px;">Let's Connect</h2>
+            <div class="social-links" data-aos="fade-up">
+                <a href="https://www.linkedin.com/in/hamad-gul/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2024 Hamad Gul. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2024 Hamad Gul. All rights reserved.</p>
+        </div>
     </footer>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Typing animation
+        const texts = ['Building Products with Real World Impact', 'Designing User-Centric Solutions', 'Creating Meaningful Experiences'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingDelay = 100;
+        let deletingDelay = 50;
+        let newTextDelay = 2000;
+
+        function typeText() {
+            const currentText = texts[textIndex];
+            const typingElement = document.getElementById('typing-text');
+
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(typeText, deletingDelay);
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeText, typingDelay);
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => {
+                    isDeleting = true;
+                }, newTextDelay);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+        }
+
+        // Start typing animation
+        setTimeout(typeText, newTextDelay);
+
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.8)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)';
+        });
+    </script>
 </body>
 </html>
