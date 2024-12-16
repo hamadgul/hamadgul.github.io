@@ -77,11 +77,15 @@
         }
 
         .section {
-            padding: 60px 0;
+            padding: 40px 0;
+        }
+
+        header + .section {
+            padding-top: 0;
         }
 
         #projects.section {
-            padding-top: 30px;
+            padding-top: 20px;
         }
 
         .section-title {
@@ -360,8 +364,8 @@
         .typing-text {
             font-size: 1.2rem;
             color: var(--accent);
-            margin-top: 20px;
-            min-height: 24px;
+            margin-bottom: 10px;
+            margin-top: 30px;
             font-weight: 500;
         }
 
@@ -377,30 +381,99 @@
         }
 
         .about-section {
-            max-width: 800px;
-            margin: 40px auto 0;
-            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .about-content {
+            text-align: left;
             background: var(--secondary);
+            padding: 30px;
             border-radius: 20px;
             border: 2px solid transparent;
             transition: all 0.2s ease;
         }
 
-        .about-section:hover {
+        .about-content:hover {
             border-color: var(--accent);
             box-shadow: 0 8px 16px rgba(0, 122, 255, 0.1);
         }
 
-        .about-section h2 {
+        .about-content h2 {
             color: var(--accent);
             font-size: 1.8rem;
             margin-bottom: 20px;
         }
 
-        .about-section p {
+        .about-content p {
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.8;
             font-size: 1.1rem;
+        }
+
+        .companies-worked {
+            background: var(--secondary);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .companies-worked:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 16px rgba(0, 122, 255, 0.1);
+        }
+
+        .companies-worked h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .company-logos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .company-logo {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            min-height: 80px;
+        }
+
+        .company-logo:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .company-logo img {
+            max-width: 100%;
+            height: auto;
+            max-height: 60px;
+            object-fit: contain;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+        .company-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                grid-template-columns: 1fr;
+            }
         }
 
         .modal {
@@ -457,7 +530,8 @@
             text-decoration: none;
             border-radius: 30px;
             font-weight: 500;
-            margin-top: 20px;
+            margin-top: 0;
+            margin-left: 15px;
             transition: all 0.3s ease;
             border: 2px solid var(--accent);
         }
@@ -487,13 +561,37 @@
                     View Resume
                 </a>
                 <div class="typing-text" id="typing-text"></div>
-                <div class="about-section" data-aos="fade-up" data-aos-delay="200">
-                    <h2><i class="fas fa-user-circle"></i> About Myself</h2>
-                    <p>I'm a Technical Product Manager with a diverse background working on various products, though my main focus is on Data Products. I started my career as a Software Engineer and Web Developer, but these days I'm all about bridging the gap between tech teams and users! I graduated from the University of Connecticut with a BS in Computer Science & Engineering in 2019.</p>
-                </div>
             </div>
         </div>
     </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="about-section" data-aos="fade-up" data-aos-delay="200">
+                <div class="about-content">
+                    <h2><i class="fas fa-user-circle"></i> About Me</h2>
+                    <p>I'm a Technical Product Manager with a diverse background working on various products, though my main focus is on Data Products. I started my career as a Software Engineer and Web Developer, but these days I'm all about bridging the gap between tech teams and users! I graduated from the University of Connecticut with a BS in Computer Science & Engineering in 2019.</p>
+                </div>
+                <div class="companies-worked">
+                    <h3><i class="fas fa-building"></i> Companies I've Worked For</h3>
+                    <div class="company-logos">
+                        <div class="company-logo">
+                            <img src="freenome.png" alt="Freenome" title="Freenome">
+                        </div>
+                        <div class="company-logo">
+                            <img src="aetna.png" alt="Aetna" title="Aetna">
+                        </div>
+                        <div class="company-logo">
+                            <img src="vintus.png" alt="VINTUS" title="VINTUS">
+                        </div>
+                        <div class="company-logo">
+                            <img src="nbc-sports.png" alt="NBC Sports" title="NBC Sports">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="projects" class="section">
         <div class="container">
