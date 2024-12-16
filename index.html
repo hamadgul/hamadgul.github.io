@@ -592,6 +592,9 @@
                 <div class="typing-container">
                     <div class="typing-text">NYC Based Product Manager | Innovator | Problem Solver</div>
                 </div>
+                <div class="typing-container">
+                    <div id="typed-text"></div>
+                </div>
                 <div class="hero-buttons">
                     <a href="#projects" class="cta-button">View My Work</a>
                     <a href="Hamad_Gul_Resume.pdf" class="resume-button" data-aos="fade-up" data-aos-delay="200">
@@ -776,29 +779,34 @@
         function typeText() {
             const currentText = texts[textIndex];
             const typingElement = document.getElementById('typed-text');
+            
+            if (!typingElement) return;  // Add safety check
 
             if (isDeleting) {
                 typingElement.textContent = currentText.substring(0, charIndex - 1);
                 charIndex--;
-                setTimeout(typeText, deletingDelay);
             } else {
                 typingElement.textContent = currentText.substring(0, charIndex + 1);
                 charIndex++;
-                setTimeout(typeText, typingDelay);
             }
 
+            let delay = isDeleting ? deletingDelay : typingDelay;
+
             if (!isDeleting && charIndex === currentText.length) {
-                setTimeout(() => {
-                    isDeleting = true;
-                }, newTextDelay);
+                delay = newTextDelay;
+                isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 textIndex = (textIndex + 1) % texts.length;
             }
+
+            setTimeout(typeText, delay);
         }
 
-        // Start typing animation
-        setTimeout(typeText, newTextDelay);
+        // Start typing animation when the document is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeText, newTextDelay);
+        });
 
         // Custom cursor
         const cursor = document.querySelector('.cursor');
