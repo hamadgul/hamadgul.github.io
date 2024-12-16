@@ -405,22 +405,22 @@
         .typing-container {
             display: inline-block;
             position: relative;
-            font-size: 2rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 500;
             margin: 20px 0;
-            color: var(--text);
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Consolas', 'Monaco', monospace;
         }
 
         .typing-text {
             display: inline-block;
-            background: linear-gradient(120deg, var(--accent), #00c6ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 15px 0;
+            color: #00ff00;
+            font-size: 1.5rem;
             letter-spacing: 0.5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
             position: relative;
         }
 
@@ -428,7 +428,7 @@
             content: '|';
             position: absolute;
             right: -8px;
-            color: var(--accent);
+            color: #00ff00;
             animation: blink 0.7s infinite;
         }
 
@@ -767,7 +767,13 @@
         });
 
         // Typing animation
-        const texts = ['Building Products with Real World Impact', 'Designing User-Centric Solutions', 'Creating Meaningful Experiences'];
+        const texts = [
+            '> Building scalable data pipelines',
+            '> Optimizing user experiences',
+            '> Deploying ML/AI solutions',
+            '> Transforming ideas into products',
+            '> Debugging real-world problems'
+        ];
         let textIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
