@@ -404,23 +404,39 @@
             border: 4px solid var(--accent);
         }
 
+        .typing-container {
+            display: inline-block;
+            position: relative;
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 20px 0;
+            color: var(--text);
+        }
+
         .typing-text {
-            font-size: 1.2rem;
+            display: inline-block;
+            background: linear-gradient(120deg, var(--accent), #00c6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 15px 0;
+            letter-spacing: 0.5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .typing-text::after {
+            content: '|';
+            position: absolute;
+            right: -8px;
             color: var(--accent);
-            margin-bottom: 10px;
-            margin-top: 30px;
-            font-weight: 500;
+            animation: blink 0.7s infinite;
         }
 
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
-        }
-
-        .typing-text::after {
-            content: '|';
-            animation: blink 1s infinite;
-            margin-left: 2px;
         }
 
         .about-section {
@@ -573,7 +589,9 @@
             <div class="hero-content" data-aos="fade-up">
                 <img src="/profile.jpg" alt="Hamad Gul" class="profile-image" data-aos="fade-up" onerror="this.onerror=null; console.error('Failed to load image'); this.style.display='none';">
                 <h1 class="hero-title">Hamad Gul</h1>
-                <p class="hero-subtitle">NYC Based Product Manager | Innovator | Problem Solver</p>
+                <div class="typing-container">
+                    <div class="typing-text" id="typed-text">NYC Based Product Manager | Innovator | Problem Solver</div>
+                </div>
                 <div class="hero-buttons">
                     <a href="#projects" class="cta-button">View My Work</a>
                     <a href="Hamad_Gul_Resume.pdf" class="resume-button" data-aos="fade-up" data-aos-delay="200">
@@ -581,7 +599,6 @@
                         View Resume
                     </a>
                 </div>
-                <div class="typing-text" id="typing-text"></div>
             </div>
         </div>
     </header>
@@ -758,7 +775,7 @@
 
         function typeText() {
             const currentText = texts[textIndex];
-            const typingElement = document.getElementById('typing-text');
+            const typingElement = document.getElementById('typed-text');
 
             if (isDeleting) {
                 typingElement.textContent = currentText.substring(0, charIndex - 1);
