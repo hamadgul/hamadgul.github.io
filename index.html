@@ -257,34 +257,47 @@
         }
 
         .contact-section {
-            text-align: center;
+            text-align: left;
         }
 
         .contact-section .section-title {
-            justify-content: center;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
+            justify-content: flex-start;
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
         }
 
         .contact-section .container {
-            text-align: center;
+            text-align: left;
         }
 
         .social-links {
             margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
 
         .social-links a {
             color: var(--text);
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             transition: color 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .social-links a:hover {
             color: var(--accent);
+        }
+
+        .social-links a i {
+            font-size: 1.8rem;
+        }
+
+        .social-links .text-link {
+            font-size: 1rem;
         }
 
         footer {
@@ -570,7 +583,14 @@
                 Contact
             </h2>
             <div class="social-links" data-aos="fade-up">
-                <a href="https://www.linkedin.com/in/hamad-gul/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/in/hamad-gul/" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                    <span class="text-link">LinkedIn</span>
+                </a>
+                <a href="tel:2036859193">
+                    <i class="fas fa-phone"></i>
+                    <span class="text-link">(203) 685-9193</span>
+                </a>
             </div>
             <p class="contact-message" data-aos="fade-up" data-aos-delay="100">
                 Don't hesitate to reach out if you want to chat about tech, product management, or if you're looking for a product manager!
