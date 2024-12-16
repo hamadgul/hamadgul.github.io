@@ -104,11 +104,36 @@
             border-radius: 20px;
             padding: 30px;
             transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-            cursor: pointer;
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
             transform: translateY(0);
+        }
+
+        .projects-grid .project-card.clickable {
+            cursor: pointer;
+        }
+
+        .projects-grid .project-card.clickable::after {
+            content: '\f0c1';  /* Link icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--accent);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .projects-grid .project-card.clickable:hover::after {
+            opacity: 1;
+        }
+
+        .projects-grid .project-card.clickable:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.1);
         }
 
         .projects-grid .project-card::before {
@@ -435,7 +460,7 @@
                 Product Portfolio
             </h2>
             <div class="projects-grid">
-                <div class="project-card" data-aos="fade-up" onclick="openModal('rwd-modal')" style="cursor: pointer;">
+                <div class="project-card clickable" data-aos="fade-up" onclick="openModal('rwd-modal')">
                     <h3 class="project-title">Real World Data Pipeline (B2B)</h3>
                     <p class="project-description">Developed an ETL pipeline at Freenome, taking it from concept to launch. The pipeline processed RWD from diverse sources and formats, standardizing it into a single Common Data Model (CDM) allowing research teams identify patterns to detect cancer at its earliest stages.</p>
                 </div>
@@ -447,18 +472,14 @@
                     <h3 class="project-title">Vintus Ordering Web Product (B2B)</h3>
                     <p class="project-description">Managed the development of a customer-facing web product for order management, collaborating with sales and marketing teams.</p>
                 </div>
-                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="project-title">AI Chatbot Mobile App (B2C)</h3>
-                    <p class="project-description">Led feature prioritization and user research for the AskAetna Student Health App, focusing on enhancing user experience and delivering advanced AI features.</p>
+                <div class="project-card clickable" data-aos="fade-up" data-aos-delay="300" onclick="window.open('https://magicboxer.co', '_blank')">
+                    <h3 class="project-title">MagicBoxer</h3>
+                    <p class="project-description">Developed a web app that uses AI to help users create custom gift boxes for their loved ones. The app provides personalized gift suggestions based on the recipient's interests and preferences.</p>
                 </div>
-                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="project-title">Certification Tracking Database App (Internal)</h3>
-                    <p class="project-description">Designed and launched a Certification Tracking Database App at Aetna, streamlining the certification submission process and optimizing resource allocation.</p>
-                </div>
-                <a href="https://github.com/Hammygul/MagicBoxer" target="_blank" class="project-card clickable" data-aos="fade-up" data-aos-delay="500">
+                <div class="project-card clickable" data-aos="fade-up" data-aos-delay="400" onclick="window.open('https://github.com/Hammygul/MagicBoxer', '_blank')">
                     <h3 class="project-title">MagicBoxer (B2C)</h3>
                     <p class="project-description">Founder and sole developer of MagicBoxer, a mobile app featuring a smart packaging algorithm. The app helps users find the ideal shipping box for their items by calculating the best fit based on item dimensions. Responsible for end-to-end development, product management, and design of this innovative solution.</p>
-                </a>
+                </div>
             </div>
         </div>
     </section>
