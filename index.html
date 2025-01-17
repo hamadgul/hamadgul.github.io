@@ -7,20 +7,20 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hamadgul.com/">
+    <meta property="og:url" content="https://hamadgul.github.io/">
     <meta property="og:title" content="Hamad Gul - Product Portfolio">
-    <meta property="og:description" content="NYC Based Engineer & Product Manager | Innovator | Problem Solver">
+    <meta property="og:description" content="NYC Based Product Manager | Engineer | Innovator |">
     <meta property="og:image" content="/media/myAvatar.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://hamadgul.com/">
+    <meta property="twitter:url" content="https://hamadgul.github.io/">
     <meta property="twitter:title" content="Hamad Gul - Product Portfolio">
-    <meta property="twitter:description" content="NYC Based Product Manager | Innovator | Problem Solver">
+    <meta property="twitter:description" content="NYC Based Product Manager | Engineer | Innovator |">
     <meta property="twitter:image" content="/media/myAvatar.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/media/myAvatar.jpg">
+    <link rel="icon" type="image/png" href="/media/myAvatar1.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -162,64 +162,23 @@
             gap: 40px;
         }
 
-        .projects-grid .project-card {
+        .project-card {
             background: var(--secondary);
-            border-radius: 20px;
             padding: 30px;
-            transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border-radius: 20px;
             border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-            transform: translateY(0);
-        }
-
-        .projects-grid .project-card.clickable {
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        .projects-grid .project-card.clickable::after {
-            content: '\f0c1';  /* Link icon */
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: var(--accent);
-            opacity: 0;
-            transition: opacity 0.2s ease;
+        .project-card.clickable {
+            cursor: pointer;
         }
 
-        .projects-grid .project-card.clickable:hover::after {
-            opacity: 1;
-        }
-
-        .projects-grid .project-card.clickable:hover {
-            transform: translateY(-10px) scale(1.02);
+        .project-card.clickable:hover {
             border-color: var(--accent);
-            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.1);
-        }
-
-        .projects-grid .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--accent) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            z-index: 0;
-        }
-
-        .projects-grid .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--accent);
-            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.1);
-        }
-
-        .projects-grid .project-card:hover::before {
-            opacity: 0.05;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 122, 255, 0.1);
         }
 
         .project-card .project-title {
@@ -246,11 +205,33 @@
             color: var(--accent);
         }
 
+        .project-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+        .project-logo.uconn-logo {
+            width: 55px;
+            height: 55px;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 5px 0;
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin-top: 20px;
         }
 
         .skill-card {
@@ -289,7 +270,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin-top: 20px;
         }
 
         .certification-card {
@@ -319,52 +299,36 @@
         }
 
         .contact-section {
-            text-align: left;
+            text-align: center;
+            padding: 80px 0;
         }
 
         .contact-section .section-title {
-            justify-content: flex-start;
-            text-align: left;
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        .contact-section .container {
-            text-align: left;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-            justify-content: flex-start;
-            margin-top: 20px;
-        }
-
-        .icon-link {
-            color: var(--text);
-            font-size: 24px;
-            transition: all 0.3s ease;
-            padding: 10px;
-            border-radius: 50%;
-            background: var(--secondary);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
             justify-content: center;
         }
 
-        .icon-link:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.1);
+        .contact-section .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        .contact-message {
-            margin-bottom: 30px;
+        .contact-section p {
+            max-width: 600px;
+            margin: 0 auto;
             color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-            max-width: 800px;
+        }
+
+        .contact-section .social-link {
+            color: var(--text);
+            font-size: 1.8rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-section .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
         }
 
         footer {
@@ -476,100 +440,184 @@
         }
 
         .about-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .about-content {
-            text-align: left;
+        .about-content, .companies-worked {
+            flex: 1;
             background: var(--secondary);
-            padding: 30px;
-            border-radius: 20px;
-            border: 2px solid transparent;
-            transition: all 0.2s ease;
+            padding: 40px;
+            border-radius: 25px;
+            min-width: 0;
         }
 
-        .about-content:hover {
-            border-color: var(--accent);
-            box-shadow: 0 8px 16px rgba(0, 122, 255, 0.1);
+        .about-content h2, .companies-worked h3 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .about-content h2 {
-            color: var(--accent);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        .about-content p {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.8;
+        .about-text {
             font-size: 1.1rem;
+            line-height: 1.8;
         }
 
-        .companies-worked {
-            background: var(--secondary);
-            padding: 30px;
-            border-radius: 20px;
-            border: 2px solid transparent;
-            transition: all 0.2s ease;
+        .about-paragraph {
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        .companies-worked:hover {
-            border-color: var(--accent);
-            box-shadow: 0 8px 16px rgba(0, 122, 255, 0.1);
-        }
-
-        .companies-worked h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .about-paragraph:last-child {
+            margin-bottom: 0;
         }
 
         .company-logos {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 60px;
+            align-items: center;
+            justify-items: center;
+            padding: 20px;
         }
 
-        .company-logo {
-            background-color: transparent;
-            padding: 20px;
-            border-radius: 10px;
+        .company-logo-link {
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            min-height: 80px;
         }
 
-        .company-logo:hover {
+        .company-logo-link:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
         }
 
-        .company-logo img {
-            max-width: 100%;
-            height: auto;
-            background-color: transparent;
-            max-height: 60px;
+        .company-logo {
+            height: 60px;
+            width: auto;
             object-fit: contain;
-            opacity: 1;
+            filter: brightness(60%);
+            opacity: 0.8;
             transition: all 0.3s ease;
         }
 
-        .company-logo:hover img {
-            transform: scale(1.05);
+        .company-logo:hover {
+            filter: brightness(100%);
+            opacity: 1;
         }
 
-        @media (max-width: 768px) {
+        .company-logo.uconn-logo {
+            height: 90px;
+        }
+
+        @media (max-width: 1024px) {
             .about-section {
-                grid-template-columns: 1fr;
+                flex-direction: column;
+                max-width: 800px;
             }
+            
+            .about-content, .companies-worked {
+                width: 100%;
+            }
+        }
+
+        .portfolio-category {
+            margin-bottom: 60px;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-title i {
+            font-size: 1.8rem;
+        }
+
+        .subcategory-title {
+            font-size: 1.5rem;
+            margin: 30px 0 20px;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subcategory-title i {
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .project-card {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .companies-worked h3 {
+            white-space: nowrap;
+            justify-content: center;
         }
 
         .modal {
@@ -580,7 +628,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0, 0, 0, 0.9);
             overflow: auto;
         }
 
@@ -590,9 +638,21 @@
             margin: 5% auto;
             padding: 20px;
             width: 90%;
-            height: 80%;
-            border-radius: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 80vh;
+            max-width: 1200px;
+            border-radius: 15px;
+        }
+
+        .modal-body {
+            position: relative;
+            height: calc(100% - 40px);
+            width: 100%;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .close-modal {
@@ -600,7 +660,7 @@
             right: 20px;
             top: 10px;
             color: #fff;
-            font-size: 28px;
+            font-size: 30px;
             font-weight: bold;
             cursor: pointer;
             z-index: 1001;
@@ -608,13 +668,6 @@
 
         .close-modal:hover {
             color: var(--accent);
-        }
-
-        .modal iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 10px;
         }
     </style>
 </head>
@@ -626,7 +679,7 @@
             <div class="hero-content" data-aos="fade-up">
                 <img src="/media/profile.jpg" alt="Hamad Gul" class="profile-image" data-aos="fade-up" onerror="this.onerror=null; console.error('Failed to load image'); this.style.display='none';">
                 <h1 class="hero-title">Hamad Gul</h1>
-                <div class="static-text">NYC Based Product Manager | Innovator | Problem Solver</div>
+                <div class="static-text">NYC Based Product Manager | Engineer | Innovator | Problem Solver</div>
                 <div class="typing-container">
                     <div id="typed-text"></div>
                 </div>
@@ -653,22 +706,35 @@
             <div class="about-section" data-aos="fade-up" data-aos-delay="200">
                 <div class="about-content">
                     <h2><i class="fas fa-user-circle"></i> About Me</h2>
-                    <p>I'm a Technical Product Manager with background working on a plethora of neat products, though my main focus is on Data Products. I started my career as a Software Engineer and Web Developer, but these days I'm all about bridging the gap between engineering teams, users & stakeholders. I graduated from the University of Connecticut with a BS in Computer Science & Engineering in 2019.</p>
+                    <div class="about-text">
+                        <p class="about-paragraph">
+                            I most recently worked as a Technical Product Manager at a mid-stage biotech startup, where I contributed to the development of their next gen data products. My background includes experience with a diverse range of exciting projects.
+                        </p>
+                        <p class="about-paragraph">
+                            I began my career as a Software Engineer and Web Developer, and I continue to take on contract development work and build my own app.
+                        </p>
+                        <p class="about-paragraph">
+                            However, my passion also lies in bridging the gap between engineering teams, users, and stakeholders as an experienced Product Manager.
+                        </p>
+                    </div>
                 </div>
                 <div class="companies-worked">
                     <h3><i class="fas fa-building"></i> Companies I've Worked For</h3>
                     <div class="company-logos">
-                        <a href="https://www.freenome.com" target="_blank" class="company-logo">
-                            <img src="logos/freenome.png" alt="Freenome" title="Freenome">
+                        <a href="https://www.freenome.com" target="_blank" class="company-logo-link">
+                            <img src="/logos/freenome.png" alt="Freenome" class="company-logo">
                         </a>
-                        <a href="https://www.aetna.com" target="_blank" class="company-logo">
-                            <img src="logos/aetna.png" alt="Aetna" title="Aetna">
+                        <a href="https://www.aetna.com" target="_blank" class="company-logo-link">
+                            <img src="/logos/aetna.png" alt="Aetna" class="company-logo">
                         </a>
-                        <a href="https://www.vintus.com" target="_blank" class="company-logo">
-                            <img src="logos/vintus.png" alt="VINTUS" title="VINTUS">
+                        <a href="https://www.vintus.com" target="_blank" class="company-logo-link">
+                            <img src="/logos/vintus.png" alt="Vintus" class="company-logo">
                         </a>
-                        <a href="https://www.nbcsports.com" target="_blank" class="company-logo">
-                            <img src="logos/nbc-sports.png" alt="NBC Sports" title="NBC Sports">
+                        <a href="https://uconn.edu" target="_blank" class="company-logo-link">
+                            <img src="/logos/uconn-logo.png" alt="UConn" class="company-logo uconn-logo">
+                        </a>
+                        <a href="https://www.nbcsports.com" target="_blank" class="company-logo-link">
+                            <img src="/logos/nbc-sports.png" alt="NBC Sports" class="company-logo">
                         </a>
                     </div>
                 </div>
@@ -682,33 +748,128 @@
                 <i class="fas fa-briefcase"></i>
                 Product Portfolio
             </h2>
-            <p class="section-description" data-aos="fade-up" data-aos-delay="100">
-                Here are a few examples of products I've worked on over the years. My extensive portfolio includes both B2B and B2C solutions across AI, data, mobile, and web platforms, showcasing my ability to adapt to diverse needs.
-            </p>
-            <div class="projects-grid">
-                <div class="project-card clickable" data-aos="fade-up" onclick="openModal('rwd-modal')">
-                    <h3 class="project-title">Real World Data Pipeline (B2B)</h3>
-                    <p class="project-description">Lead PM for an ETL pipeline at Freenome, taking it from concept to launch (0-1). The pipeline processed RWD from diverse sources and formats, standardizing it into a single Common Data Model (CDM) allowing research teams identify patterns to detect cancer at its earliest stages.</p>
+            
+            <!-- As a Product Manager Section -->
+            <div class="portfolio-category" data-aos="fade-up">
+                <h3 class="category-title">
+                    <i class="fas fa-tasks"></i>
+                    As a Product Manager
+                </h3>
+                <div class="project-grid">
+                    <div class="project-card clickable" onclick="openModal('rwd-modal')">
+                        <h3 class="project-title">
+                            <i class="fas fa-chart-line"></i>
+                            The Real World Data Pipeline (B2B)
+                        </h3>
+                        <p class="project-description">Lead PM for an ETL pipeline at Freenome, taking it from concept to launch (0-1). The pipeline processed RWD from diverse sources and formats, standardizing it into a single Common Data Model (CDM) allowing research teams identify patterns to detect cancer at its earliest stages.</p>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3 class="project-title">
+                            <i class="fas fa-brain"></i>
+                            AI Cancer Diagnostic Pipeline (B2B)
+                        </h3>
+                        <p class="project-description">Product Manager for an AI-powered diagnostic software for Freenome's flagship blood test kit product, designed to assess colorectal cancer (CRC) risk in patients through the use of Machine Learning Models and Multiomics.</p>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3 class="project-title">
+                            <i class="fas fa-mobile-alt"></i>
+                            Mobile Healthcare App (B2C)
+                        </h3>
+                        <p class="project-description">Led feature prioritization and user research for the AskAetna Student Health App, focusing on enhancing user experience and delivering advanced AI features.</p>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3 class="project-title">
+                            <i class="fas fa-database"></i>
+                            Certification Tracking Database App (Internal)
+                        </h3>
+                        <p class="project-description">Designed and launched a Certification Tracking Database App at Aetna 0-1, streamlining the certification submission process and optimizing resource allocation.</p>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3 class="project-title">
+                            <i class="fas fa-shopping-cart"></i>
+                            Ordering Web Portal (B2C)
+                        </h3>
+                        <p class="project-description">Managed the development of a customer-facing web product for order management at Vintus, collaborating with sales and marketing teams to streamline the wine ordering process.</p>
+                    </div>
+                    
+                    <div class="project-card clickable" onclick="window.open('https://github.com/hamadgul/MagicBoxer', '_blank')">
+                        <h3 class="project-title">
+                            <img src="/logos/magicboxer-logo.png" alt="MagicBoxer Logo" class="project-logo">
+                            MagicBoxer (B2C)
+                        </h3>
+                        <p class="project-description">Founder and Chief Product Manager of MagicBoxer, a mobile app featuring a smart packaging algorithm. The app helps users find the ideal shipping box for their items by calculating the best fit based on item dimensions. Responsible for end-to-end development, product management, and design of this innovative solution.</p>
+                    </div>
                 </div>
-                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="project-title">AI Cancer Diagnostic Pipeline (B2B)</h3>
-                    <p class="project-description">Product Manager for an AI-powered diagnostic software for Freenome's flagship blood test kit product, designed to assess colorectal cancer (CRC) risk in patients through the use of Machine Learning Models and Multiomics.</p>
+            </div>
+
+            <!-- As a Developer Section -->
+            <div class="portfolio-category" data-aos="fade-up">
+                <h3 class="category-title">
+                    <i class="fas fa-code"></i>
+                    As a Developer
+                </h3>
+                <h4 class="subcategory-title">
+                    <i class="fas fa-globe"></i>
+                    Web Development
+                </h4>
+                <div class="project-grid">
+                    <div class="project-card clickable" onclick="window.open('https://www.vintus.com', '_blank')">
+                        <h3 class="project-title">
+                            <i class="fas fa-wine-bottle"></i>
+                            Vintus E-Commerce Site
+                        </h3>
+                        <p class="project-description">Developed and maintained the main e-commerce platform for Vintus, a leading wine import company. Implemented features for inventory management, order processing, and customer relationship management.</p>
+                    </div>
+                    
+                    <div class="project-card clickable" onclick="window.open('https://financialaid.uconn.edu', '_blank')">
+                        <h3 class="project-title">
+                            <img src="/logos/uconn-logo.png" alt="UConn Logo" class="project-logo uconn-logo">
+                            UConn Financial Aid Site
+                        </h3>
+                        <p class="project-description">Built and maintained the financial aid portal for the University of Connecticut, handling sensitive student information, complex financial aid calculations, creating dynamic react forms and updates to the cloud database.</p>
+                    </div>
+                    
+                    <div class="project-card clickable" onclick="window.open('https://hamadgul.github.io', '_blank')">
+                        <h3 class="project-title">
+                            <img src="/media/myAvatar1.png" alt="Avatar" class="project-logo">
+                            Personal Portfolio Site
+                        </h3>
+                        <p class="project-description">Designed and developed a responsive personal portfolio website using modern web technologies to showcase professional experience and projects.</p>
+                    </div>
+                    
+                    <div class="project-card clickable" onclick="window.open('https://cacc.engr.uconn.edu', '_blank')">
+                        <h3 class="project-title">
+                            <i class="fas fa-microchip"></i>
+                            CACC Engineering Site
+                        </h3>
+                        <p class="project-description">Developed the website for UConn's Center for Advanced Computing and Communication, featuring research publications and project showcases.</p>
+                    </div>
                 </div>
-                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="project-title">Vintus Ordering Web Product (B2B)</h3>
-                    <p class="project-description">Managed the development of a customer-facing web product for order management, collaborating with sales and marketing teams.</p>
-                </div>
-                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="project-title">Mobile Healthcare App (B2C)</h3>
-                    <p class="project-description">Led feature prioritization and user research for the AskAetna Student Health App, focusing on enhancing user experience and delivering advanced AI features.</p>
-                </div>
-                <div class="project-card" data-aos="fade-up" data-aos-delay="500">
-                    <h3 class="project-title">Certification Tracking Database App (Internal)</h3>
-                    <p class="project-description">Designed and launched a Certification Tracking Database App at Aetna 0-1, streamlining the certification submission process and optimizing resource allocation.</p>
-                </div>
-                <div class="project-card clickable" data-aos="fade-up" data-aos-delay="600" onclick="window.open('https://github.com/Hammygul/MagicBoxer', '_blank')">
-                    <h3 class="project-title">MagicBoxer (B2C)</h3>
-                    <p class="project-description">Founder and sole developer of MagicBoxer, a mobile app featuring a smart packaging algorithm. The app helps users find the ideal shipping box for their items by calculating the best fit based on item dimensions. Responsible for end-to-end development, product management, and design of this innovative solution.</p>
+
+                <h4 class="subcategory-title">
+                    <i class="fas fa-mobile-alt"></i>
+                    Mobile App Development
+                </h4>
+                <div class="project-grid">
+                    <div class="project-card clickable" onclick="window.open('https://github.com/hamadgul/MagicBoxer', '_blank')">
+                        <h3 class="project-title">
+                            <img src="/logos/magicboxer-logo.png" alt="MagicBoxer Logo" class="project-logo">
+                            MagicBoxer
+                        </h3>
+                        <p class="project-description">Developed a React Native mobile app with a sophisticated algorithm for optimal package sizing. Implemented features including 3D visualization using Three.js, real-time shipping estimation using USPS, UPS & FedEx API's, and an advanced packaging algorithm that determines the best fit for a package.</p>
+                    </div>
+                    
+                    <div class="project-card clickable" onclick="window.open('https://apps.apple.com/us/app/nbc-sports/id542511686', '_blank')">
+                        <h3 class="project-title">
+                            <img src="/logos/nbc-sports.png" alt="NBC Sports Logo" class="project-logo">
+                            NBC Sports App
+                        </h3>
+                        <p class="project-description">Contributed to the development of NBC Sports mobile app in Android Studio using Java focusing on android development, implementing features for live sports streaming, real-time scores, and personalized content delivery.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -735,7 +896,7 @@
                 </div>
                 <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
                     <h3>Software Development</h3>
-                    <p>I refine my programming skills through various side projects. React, ReactNative, JavaScript, Python, & Java. 
+                    <p>I refine my programming skills through various side projects. React, React Native, JavaScript, Python, & Java. 
                     </p>
                 </div>
                 <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
@@ -779,18 +940,18 @@
                 <i class="fas fa-envelope"></i>
                 Contact
             </h2>
-            <p class="contact-message" data-aos="fade-up" data-aos-delay="100">
-                Don't hesitate to reach out if you want to chat about tech, product management, or if you're looking for a product manager!
+            <p data-aos="fade-up" data-aos-delay="100">
+                Feel free to reach out to me on LinkedIn or via email. I'm always open to discussing new opportunities, innovative ideas, or potential collaborations.
             </p>
-            <div class="social-links" data-aos="fade-up">
-                <a href="https://www.linkedin.com/in/hamad-gul/" target="_blank" class="icon-link">
+            <div class="social-links" data-aos="fade-up" data-aos-delay="200">
+                <a href="https://www.linkedin.com/in/hamadgul/" target="_blank" class="social-link">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="tel:2036859193" class="icon-link">
-                    <i class="fas fa-phone"></i>
-                </a>
-                <a href="mailto:hamadgul1@gmail.com" class="icon-link">
+                <a href="mailto:hamadgul@gmail.com" class="social-link">
                     <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://github.com/Hammygul" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
                 </a>
             </div>
         </div>
@@ -802,10 +963,18 @@
         </div>
     </footer>
 
+    <!-- Modals -->
     <div id="rwd-modal" class="modal">
+        <span class="close-modal" onclick="closeModal('rwd-modal')">&times;</span>
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('rwd-modal')">&times;</span>
-            <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSnHFqSG7V1y7P9scv33cagm0I_LJ6Oop2BBc5lJn-rTQhJ-viU1ugMDmx1MN3GlYJhekfRu2v0Xzsq/embed?start=false&loop=false&delayms=15000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            <div class="modal-body">
+                <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSnHFqSG7V1y7P9scv33cagm0I_LJ6Oop2BBc5lJn-rTQhJ-viU1ugMDmx1MN3GlYJhekfRu2v0Xzsq/embed?start=false&loop=false&delayms=15000" 
+                        frameborder="0" 
+                        allowfullscreen="true" 
+                        mozallowfullscreen="true" 
+                        webkitallowfullscreen="true">
+                </iframe>
+            </div>
         </div>
     </div>
 
@@ -895,3 +1064,4 @@
     </script>
 </body>
 </html>
+
