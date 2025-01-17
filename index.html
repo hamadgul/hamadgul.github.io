@@ -98,39 +98,70 @@
             display: inline-flex;
             align-items: center;
             justify-content: flex-start;
-            height: 3.5rem;
+            height: 2.5rem;
             overflow: hidden;
-            background: var(--secondary);
+            background: rgba(0, 0, 0, 0.7);
             padding: 0.5rem 1rem;
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-family: 'Consolas', 'Monaco', monospace;
+            border: 1px solid rgba(0, 122, 255, 0.3);
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
             margin-bottom: 2rem;
+            width: 450px;
+            box-shadow: 0 0 15px rgba(0, 122, 255, 0.1);
+            backdrop-filter: blur(5px);
         }
 
-        .typing-text {
+        #typed-text {
             display: inline-block;
-            color: var(--accent);
-            font-size: 1.8rem;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            color: #00ff9d;
+            font-size: 1.1rem;
+            letter-spacing: 0;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+            white-space: nowrap;
             position: relative;
-            height: 3.5rem;
-            line-height: 3.5rem;
-            overflow: hidden;
-            vertical-align: middle;
-            text-align: left;
+            line-height: 1.5rem;
+            font-weight: 500;
         }
 
-        .typing-text::after {
-            content: '|';
+        #typed-text::before {
+            content: '';
             position: absolute;
-            right: -8px;
-            color: var(--accent);
-            animation: blink 0.7s infinite;
+            left: 0;
+            top: 0;
             height: 100%;
-            line-height: inherit;
-            font-size: 1.8rem;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        #typed-text::after {
+            content: '|';
+            margin-left: 2px;
+            opacity: 1;
+            animation: blink 0.7s infinite;
+            color: #00ff9d;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .typing-container:hover {
+            border-color: rgba(0, 122, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.2);
+            transform: translateY(-1px);
+            transition: all 0.3s ease;
         }
 
         .hero-subtitle {
@@ -683,45 +714,48 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
-            overflow: auto;
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
             position: relative;
-            background-color: var(--secondary);
-            margin: 5% auto;
-            padding: 20px;
             width: 90%;
-            height: 80vh;
-            max-width: 1200px;
-            border-radius: 15px;
+            height: 90%;
+            margin: 2% auto;
+            background: var(--background);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
         }
 
-        .modal-body {
-            position: relative;
-            height: calc(100% - 40px);
-            width: 100%;
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: var(--text);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+            background: var(--background);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
-        .modal-body iframe {
+        .modal-close:hover {
+            background: var(--accent);
+            color: var(--background);
+        }
+
+        .modal iframe {
             width: 100%;
             height: 100%;
             border: none;
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            color: #fff;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .close-modal:hover {
-            color: var(--accent);
         }
 
         .section-heading {
@@ -776,6 +810,16 @@
             max-width: var(--max-width);
             margin: 0 auto;
         }
+
+        @media (max-width: 768px) {
+            .typing-container {
+                width: 100%;
+                max-width: 450px;
+            }
+            #typed-text {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -796,7 +840,7 @@
                     <a href="https://www.linkedin.com/in/hamad-gul/" class="cta-button secondary" target="_blank">
                         <i class="fab fa-linkedin"></i>LinkedIn
                     </a>
-                    <a href="/media/Hamad_Gul_Resume.pdf" class="cta-button secondary" target="_blank">
+                    <a href="#" class="cta-button secondary" onclick="openModal('resumeModal')">
                         <i class="fas fa-file-pdf"></i>Resume
                     </a>
                     <a href="https://github.com/hamadgul" class="cta-button secondary" target="_blank">
@@ -814,13 +858,13 @@
                     <h2><i class="fas fa-user-circle"></i> About Me</h2>
                     <div class="about-text">
                         <p class="about-paragraph">
-                            I most recently worked as a Technical Product Manager at a mid-stage biotech startup, where I contributed to the development of their next gen data products. My background includes experience with a diverse range of exciting projects.
+                            I most recently worked as a Technical Product Manager at a mid-stage biotech startup, where I contributed to the development of their next gen data products. My background includes experience with a diverse range of exciting projects & products.
                         </p>
                         <p class="about-paragraph">
                             I began my career as a Software Engineer and Web Developer, and I continue to take on contract development work and build my own app.
                         </p>
                         <p class="about-paragraph">
-                            However, my passion also lies in bridging the gap between engineering teams, users, and stakeholders as an experienced Product Manager.
+                            However, my passion lies just as much in bridging the gap between engineering teams, users, and stakeholders as an experienced Product Manager who loves to ship top quality products.
                         </p>
                     </div>
                 </div>
@@ -1069,6 +1113,14 @@
         </div>
     </footer>
 
+    <!-- Resume Modal -->
+    <div id="resumeModal" class="modal" onclick="closeModalOnOutsideClick(event, 'resumeModal')">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('resumeModal')">&times;</span>
+            <iframe src="/media/Hamad_Gul_Resume.pdf"></iframe>
+        </div>
+    </div>
+
     <!-- Modals -->
     <div id="rwd-modal" class="modal">
         <span class="close-modal" onclick="closeModal('rwd-modal')">&times;</span>
@@ -1092,7 +1144,7 @@
 
         // Typing animation
         const texts = [
-            '> Building products with real world impact',
+            '> Building products with impact',
             '> Optimizing user experiences',
             '> Transforming ideas into products',
         ];
@@ -1151,20 +1203,18 @@
         });
 
         function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
-            document.body.style.overflow = "hidden";
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-            document.body.style.overflow = "auto";
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = "none";
-                document.body.style.overflow = "auto";
+        function closeModalOnOutsideClick(event, modalId) {
+            if (event.target.className === 'modal') {
+                closeModal(modalId);
             }
         }
     </script>
