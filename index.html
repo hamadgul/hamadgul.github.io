@@ -10,17 +10,17 @@
     <meta property="og:url" content="https://hamadgul.github.io/">
     <meta property="og:title" content="Hamad Gul - Product Portfolio">
     <meta property="og:description" content="NYC Based Product Manager | Engineer | Innovator |">
-    <meta property="og:image" content="/media/myAvatar.jpg">
+    <meta property="og:image" content="/media/profile.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://hamadgul.github.io/">
     <meta property="twitter:title" content="Hamad Gul - Product Portfolio">
     <meta property="twitter:description" content="NYC Based Product Manager | Engineer | Innovator |">
-    <meta property="twitter:image" content="/media/myAvatar.jpg">
+    <meta property="twitter:image" content="/media/profile.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/media/myAvatar1.png">
+    <link rel="icon" type="image/png" href="/media/myAvatar.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -208,24 +208,33 @@
         .project-logo {
             width: 40px;
             height: 40px;
-            object-fit: contain;
-            margin-right: 15px;
+            margin-right: 10px;
             vertical-align: middle;
+            object-fit: contain;
+            background: transparent !important;
         }
 
-        .project-logo.uconn-logo {
-            width: 55px;
-            height: 55px;
+        .project-title img {
+            background: transparent !important;
         }
 
         .project-title {
-            font-size: 1.25rem;
-            margin-bottom: 15px;
-            color: var(--text);
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 5px 0;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text);
+            background: transparent;
+        }
+
+        .project-title i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .project-logo[src*="myAvatar"] {
+            background: transparent;
+            mix-blend-mode: multiply;
         }
 
         .skills-grid {
@@ -828,7 +837,7 @@
                     
                     <div class="project-card clickable" onclick="window.open('https://financialaid.uconn.edu', '_blank')">
                         <h3 class="project-title">
-                            <img src="/logos/uconn-logo.png" alt="UConn Logo" class="project-logo uconn-logo">
+                            <i class="fas fa-university"></i>
                             UConn Financial Aid Site
                         </h3>
                         <p class="project-description">Built and maintained the financial aid portal for the University of Connecticut, handling sensitive student information, complex financial aid calculations, creating dynamic react forms and updates to the cloud database.</p>
@@ -836,7 +845,7 @@
                     
                     <div class="project-card clickable" onclick="window.open('https://hamadgul.github.io', '_blank')">
                         <h3 class="project-title">
-                            <img src="/media/myAvatar1.png" alt="Avatar" class="project-logo">
+                            <img src="/media/myAvatar.png" alt="Avatar" class="project-logo">
                             Personal Portfolio Site
                         </h3>
                         <p class="project-description">Designed and developed a responsive personal portfolio website using modern web technologies to showcase professional experience and projects.</p>
