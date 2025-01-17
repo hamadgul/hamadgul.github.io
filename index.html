@@ -251,11 +251,33 @@
         }
 
         .section-title {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 15px;
+            flex-wrap: wrap;
+            color: var(--text);
+        }
+
+        .section-title i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .category-title {
+            font-size: 2rem;
+            margin: 40px 0 30px;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .category-title i {
+            font-size: 1.8rem;
+            color: var(--accent);
         }
 
         .section-description {
@@ -470,7 +492,21 @@
             }
 
             .section-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                gap: 10px;
+            }
+
+            .section-title i {
+                font-size: 1.8rem;
+            }
+
+            .category-title {
+                font-size: 1.8rem;
+                gap: 10px;
+            }
+
+            .category-title i {
+                font-size: 1.6rem;
             }
 
             .hero-buttons {
@@ -484,6 +520,24 @@
             .resume-button {
                 width: 100%;
                 justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title i {
+                font-size: 1.6rem;
+            }
+
+            .category-title {
+                font-size: 1.6rem;
+            }
+
+            .category-title i {
+                font-size: 1.4rem;
             }
         }
 
@@ -619,21 +673,6 @@
 
         .portfolio-category {
             margin-bottom: 60px;
-        }
-
-        .category-title {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--accent);
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .category-title i {
-            font-size: 1.8rem;
         }
 
         .subcategory-title {
