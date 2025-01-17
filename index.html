@@ -63,14 +63,74 @@
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: left;
         }
 
         .hero-title {
-            font-size: 7vw;
+            font-size: 4.5rem;
+            margin: 20px 0;
+            color: var(--text);
+            text-align: left;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .static-text {
+            display: block;
+            background: linear-gradient(120deg, var(--accent), #00c6ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.1;
+            margin: 15px 0 2.5rem 0;
+            letter-spacing: 0.5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            font-family: 'Inter', sans-serif;
+            text-align: left;
+        }
+
+        .typing-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 3.5rem;
+            overflow: hidden;
+            background: var(--secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin-bottom: 2rem;
+        }
+
+        .typing-text {
+            display: inline-block;
+            color: var(--accent);
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            position: relative;
+            height: 3.5rem;
+            line-height: 3.5rem;
+            overflow: hidden;
+            vertical-align: middle;
+            text-align: left;
+        }
+
+        .typing-text::after {
+            content: '|';
+            position: absolute;
+            right: -8px;
+            color: var(--accent);
+            animation: blink 0.7s infinite;
+            height: 100%;
+            line-height: inherit;
+            font-size: 1.8rem;
         }
 
         .hero-subtitle {
@@ -84,22 +144,45 @@
             gap: 15px;
             align-items: center;
             flex-wrap: wrap;
+            justify-content: flex-start;
+            margin-bottom: 0.5rem;
+            padding: 0;
         }
 
         .cta-button {
             display: inline-flex;
             align-items: center;
-            padding: 15px 30px;
-            background: var(--accent);
-            color: var(--text);
-            text-decoration: none;
-            border-radius: 30px;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
             font-weight: 500;
-            transition: transform 0.3s ease;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: var(--accent);
+            color: var(--background);
+            border: 2px solid var(--accent);
+            min-width: 130px;
+            justify-content: center;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
+        }
+
+        .cta-button i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--accent);
+            color: var(--background);
         }
 
         .resume-button {
@@ -394,68 +477,29 @@
             width: 300px;
             height: 300px;
             border-radius: 50%;
+            display: block;
             object-fit: cover;
-            margin-bottom: 40px;
             border: 4px solid var(--accent);
+            margin-bottom: 40px;
+            margin-left: 0;
         }
 
-        .typing-container {
-            display: inline-block;
-            position: relative;
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-family: 'Consolas', 'Monaco', monospace;
-        }
-
-        .typing-text {
-            display: inline-block;
-            color: #00ff00;
-            font-size: 1.5rem;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-            position: relative;
-        }
-
-        .typing-text::after {
-            content: '|';
-            position: absolute;
-            right: -8px;
-            color: #00ff00;
-            animation: blink 0.7s infinite;
-        }
-
-        .static-text {
-            display: inline-block;
-            background: linear-gradient(120deg, var(--accent), #00c6ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 15px 0;
-            letter-spacing: 0.5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            position: relative;
-            font-family: 'Inter', sans-serif;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .profile-image-container {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .about-section {
             display: flex;
             justify-content: center;
             gap: 30px;
-            padding: 40px 20px;
+            padding: 0;
             max-width: 1400px;
-            margin: 0 auto;
+            margin: -0.5rem auto 0;
         }
 
         .about-content, .companies-worked {
@@ -679,6 +723,59 @@
         .close-modal:hover {
             color: var(--accent);
         }
+
+        .section-heading {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .section-heading {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-heading {
+                font-size: 1.75rem;
+            }
+        }
+
+        .companies-section .section-heading {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            word-wrap: break-word;
+            max-width: 100%;
+            padding: 0 1rem;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .primary-button,
+        .secondary-button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .companies-section {
+            padding: 40px 20px;  
+            background: var(--background-alt);
+        }
+
+        .companies-worked {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -687,24 +784,23 @@
     <header>
         <div class="container">
             <div class="hero-content" data-aos="fade-up">
-                <img src="/media/profile.jpg" alt="Hamad Gul" class="profile-image" data-aos="fade-up" onerror="this.onerror=null; console.error('Failed to load image'); this.style.display='none';">
+                <div class="profile-image-container">
+                    <img src="/media/profile.jpg" alt="Hamad Gul" class="profile-image" data-aos="fade-up" onerror="this.onerror=null; console.error('Failed to load image'); this.style.display='none';">
+                </div>
                 <h1 class="hero-title">Hamad Gul</h1>
                 <div class="static-text">NYC Based Product Manager | Engineer | Innovator | Problem Solver</div>
                 <div class="typing-container">
                     <div id="typed-text"></div>
                 </div>
                 <div class="hero-buttons">
-                    <a href="https://www.linkedin.com/in/hamad-gul/" class="cta-button" target="_blank">
-                        <i class="fab fa-linkedin"></i>&nbsp;
-                        LinkedIn
+                    <a href="https://www.linkedin.com/in/hamad-gul/" class="cta-button secondary" target="_blank">
+                        <i class="fab fa-linkedin"></i>LinkedIn
                     </a>
-                    <a href="media/Hamad_Gul_Resume.pdf" class="resume-button" data-aos="fade-up" data-aos-delay="200">
-                        <i class="fas fa-file-pdf"></i>
-                        Resume
+                    <a href="/media/Hamad_Gul_Resume.pdf" class="cta-button secondary" target="_blank">
+                        <i class="fas fa-file-pdf"></i>Resume
                     </a>
-                    <a href="https://github.com/hamadgul" class="resume-button" data-aos="fade-up" data-aos-delay="300" target="_blank">
-                        <i class="fab fa-github"></i>
-                        GitHub
+                    <a href="https://github.com/hamadgul" class="cta-button secondary" target="_blank">
+                        <i class="fab fa-github"></i>GitHub
                     </a>
                 </div>
             </div>
@@ -729,7 +825,7 @@
                     </div>
                 </div>
                 <div class="companies-worked">
-                    <h3><i class="fas fa-building"></i> Companies I've Worked For</h3>
+                    <h3 class="section-heading"><i class="fas fa-building"></i> Companies I've Worked For</h3>
                     <div class="company-logos">
                         <a href="https://www.freenome.com" target="_blank" class="company-logo-link">
                             <img src="/logos/freenome.png" alt="Freenome" class="company-logo">
@@ -1011,7 +1107,7 @@
             const currentText = texts[textIndex];
             const typingElement = document.getElementById('typed-text');
             
-            if (!typingElement) return;  // Add safety check
+            if (!typingElement) return;  
 
             if (isDeleting) {
                 typingElement.textContent = currentText.substring(0, charIndex - 1);
