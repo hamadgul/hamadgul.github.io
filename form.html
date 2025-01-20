@@ -489,24 +489,18 @@
 
             <!-- E-commerce Features -->
             <div class="form-section" id="ecommerceSection" style="display: none;">
-                <h3 class="section-title">E-commerce Features</h3>
+                <h3 class="section-title">E-commerce Details</h3>
                 <div class="mb-3">
-                    <label class="form-label required">Number of Products</label>
-                    <input type="number" class="form-control" name="product_count" required>
+                    <label class="form-label">Approximate number of products:</label>
+                    <input type="number" class="form-control" name="product_count" min="1">
                 </div>
                 <div class="mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="ecommerce[]" value="cart">
-                        <label class="form-check-label">Shopping Cart</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="ecommerce[]" value="payment">
-                        <label class="form-check-label">Payment Processing</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="ecommerce[]" value="inventory">
-                        <label class="form-check-label">Inventory Management</label>
-                    </div>
+                    <label class="form-label">Product categories (comma-separated):</label>
+                    <input type="text" class="form-control" name="product_categories">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Payment gateway preference:</label>
+                    <input type="text" class="form-control" name="payment_gateway" placeholder="e.g., Stripe, PayPal, Square">
                 </div>
             </div>
 
@@ -569,6 +563,88 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Global functions for HTML event handlers
+        function toggleEcommerceSection(radio) {
+            const ecommerceSection = document.getElementById('ecommerceSection');
+            const productCountInput = ecommerceSection.querySelector('input[name="product_count"]');
+            
+            if (radio.value === 'yes') {
+                ecommerceSection.style.display = 'block';
+                productCountInput.setAttribute('required', '');
+            } else {
+                ecommerceSection.style.display = 'none';
+                productCountInput.removeAttribute('required');
+                // Clear all e-commerce fields
+                ecommerceSection.querySelectorAll('input').forEach(input => {
+                    input.value = '';
+                });
+            }
+            window.updateProgress();
+        }
+
+        function toggleCurrentUrl(radio) {
+            const currentUrlField = document.getElementById('currentUrlField');
+            const currentUrlInput = document.getElementById('current_url');
+            
+            if (radio.value === 'yes') {
+                currentUrlField.style.display = 'block';
+            } else {
+                currentUrlField.style.display = 'none';
+                currentUrlInput.value = ''; // Clear the value when hidden
+            }
+            window.updateProgress();
+        }
+
+        function addContactPerson() {
+            window.contactCount++;
+            const container = document.getElementById('contactPersonsContainer');
+            const newContact = document.createElement('div');
+            newContact.innerHTML = `
+                <div class="contact-person-group">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label required">Contact Person Name</label>
+                            <input type="text" class="form-control" name="contact_person[]" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">Email</label>
+                            <input type="email" class="form-control" name="contact_email[]" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">Phone</label>
+                            <input type="tel" class="form-control" name="contact_phone[]" required>
+                        </div>
+                        <div class="col-12 text-end">
+                            <button type="button" class="remove-contact-btn" onclick="removeContactPerson(this)">×</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            // Insert before the "Add Another Contact Person" button
+            const addButton = container.querySelector('.text-end');
+            container.insertBefore(newContact, addButton);
+            window.updateProgress();
+        }
+
+        function removeContactPerson(button) {
+            const contactSection = button.parentElement.parentElement;
+            contactSection.remove();
+            window.contactCount--;
+            
+            // Update the contact person numbers
+            const headers = document.querySelectorAll('.contact-count');
+            if (headers.length === 1) {
+                // If only one contact remains, remove the number
+                headers[0].textContent = 'Contact Person';
+            } else {
+                // Otherwise, update the numbers
+                headers.forEach((header, index) => {
+                    header.textContent = `Contact Person ${index + 1}`;
+                });
+            }
+            window.updateProgress();
+        }
+
         // Make sure DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded');
@@ -581,18 +657,17 @@
                 return;
             }
 
+            // Initialize global variables
+            window.contactCount = 1;
+
             // Progress bar functionality
             const progressBar = document.getElementById('progressBar');
-            const sections = document.querySelectorAll('.form-section');
-            
-            function updateProgress() {
+            window.updateProgress = function() {
                 const totalFields = form.querySelectorAll('input, select, textarea').length;
                 const filledFields = form.querySelectorAll('input:valid, select:valid, textarea:valid').length;
                 const progress = (filledFields / totalFields) * 100;
                 progressBar.style.width = `${progress}%`;
-            }
-
-            form.addEventListener('input', updateProgress);
+            };
 
             // Initialize tooltips
             const tooltips = document.querySelectorAll('.tooltip-icon');
@@ -600,7 +675,7 @@
                 new bootstrap.Tooltip(tooltip);
             });
 
-            // Form validation
+            // Form validation and submission
             form.addEventListener('submit', function(event) {
                 console.log('Form submit triggered');
                 event.preventDefault();
@@ -697,80 +772,9 @@
                 });
             });
 
-            console.log('Submit event listener attached');
-
-            // Toggle ecommerce section
-            function toggleEcommerceSection(radio) {
-                const ecommerceSection = document.getElementById('ecommerceSection');
-                ecommerceSection.style.display = radio.value === 'yes' ? 'block' : 'none';
-            }
-
-            // Function to toggle Current URL field
-            function toggleCurrentUrl(radio) {
-                const currentUrlField = document.getElementById('currentUrlField');
-                const currentUrlInput = document.getElementById('current_url');
-                
-                if (radio.value === 'yes') {
-                    currentUrlField.style.display = 'block';
-                } else {
-                    currentUrlField.style.display = 'none';
-                    currentUrlInput.value = ''; // Clear the value when hidden
-                }
-                updateProgress();
-            }
-
-            // Contact person functionality
-            let contactCount = 1;
-            
-            function addContactPerson() {
-                contactCount++;
-                const container = document.getElementById('contactPersonsContainer');
-                const newContact = document.createElement('div');
-                newContact.innerHTML = `
-                    <div class="contact-person-group">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label required">Contact Person Name</label>
-                                <input type="text" class="form-control" name="contact_person[]" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label required">Email</label>
-                                <input type="email" class="form-control" name="contact_email[]" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label required">Phone</label>
-                                <input type="tel" class="form-control" name="contact_phone[]" required>
-                            </div>
-                            <div class="col-12 text-end">
-                                <button type="button" class="remove-contact-btn" onclick="removeContactPerson(this)">×</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                // Insert before the "Add Another Contact Person" button
-                const addButton = container.querySelector('.text-end');
-                container.insertBefore(newContact, addButton);
-                updateProgress();
-            }
-
-            function removeContactPerson(button) {
-                const contactSection = button.parentElement.parentElement;
-                contactSection.remove();
-                contactCount--;
-                
-                // Update the contact person numbers
-                const headers = document.querySelectorAll('.contact-count');
-                if (headers.length === 1) {
-                    // If only one contact remains, remove the number
-                    headers[0].textContent = 'Contact Person';
-                } else {
-                    // Otherwise, update the numbers
-                    headers.forEach((header, index) => {
-                        header.textContent = `Contact Person ${index + 1}`;
-                    });
-                }
-                updateProgress();
-            }
+            // Initial progress update
+            window.updateProgress();
+            console.log('Form initialization complete');
         });
     </script>
 </body>
