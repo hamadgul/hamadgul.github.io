@@ -293,14 +293,19 @@
         <div class="progress-bar-fill" id="progressBar"></div>
     </div>
 
-    <div class="container form-container">
-        <div class="form-header">
+    <div class="container form-container my-5">
+        <div class="text-center mb-4">
             <h1 class="mb-4">Website Development Client Intake Form</h1>
         </div>
 
-        <form id="clientIntakeForm" action="https://getform.io/f/bqoojlnb" method="POST">
-            <!-- Getform Configuration -->
-            <input type="hidden" name="_redirect" value="https://hamadgul.github.io/thank-you.html">
+        <form id="clientIntakeForm" name="website-inquiry" netlify>
+            <!-- Netlify Forms Configuration -->
+            <input type="hidden" name="form-name" value="website-inquiry">
+            
+            <!-- Honeypot field -->
+            <div class="hidden" style="display: none;">
+                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </div>
 
             <!-- Validation Message -->
             <div id="validationMessage" class="validation-message">
@@ -315,8 +320,8 @@
                         <div class="contact-person-group">
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label class="form-label required">Company Name</label>
-                                    <input type="text" class="form-control" name="company_name" required>
+                                    <label class="form-label required" for="companyName">Company Name</label>
+                                    <input type="text" class="form-control" id="companyName" name="company_name" required>
                                 </div>
                             </div>
                         </div>
@@ -325,16 +330,16 @@
                         <div class="contact-person-group">
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label class="form-label required">Contact Person Name</label>
-                                    <input type="text" class="form-control" name="contact_person[]" required>
+                                    <label class="form-label required" for="contactPersonName">Contact Person Name</label>
+                                    <input type="text" class="form-control" id="contactPersonName" name="contact_person[]" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label required">Email</label>
-                                    <input type="email" class="form-control" name="contact_email[]" required>
+                                    <label class="form-label required" for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="contact_email[]" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label required">Phone</label>
-                                    <input type="tel" class="form-control" name="contact_phone[]" required>
+                                    <label class="form-label required" for="phone">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" name="contact_phone[]" required>
                                 </div>
                             </div>
                         </div>
@@ -345,8 +350,8 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <label class="form-label required">Company Overview</label>
-                        <textarea class="form-control" name="company_overview" rows="3" required></textarea>
+                        <label class="form-label required" for="companyOverview">Company Overview</label>
+                        <textarea class="form-control" id="companyOverview" name="company_overview" rows="3" required></textarea>
                     </div>
                 </div>
             </div>
@@ -355,7 +360,7 @@
             <div class="form-section" data-section="2">
                 <h3 class="section-title">Website Requirements</h3>
                 <div class="mb-3">
-                    <label class="form-label required">Primary Purpose</label>
+                    <label class="form-label required" for="primaryPurpose">Primary Purpose</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="website_purpose" value="business" required>
                         <label class="form-check-label">Business/Company Website</label>
@@ -376,12 +381,12 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label required">Target Audience</label>
-                    <textarea class="form-control" name="target_audience" rows="2" required></textarea>
+                    <label class="form-label required" for="targetAudience">Target Audience</label>
+                    <textarea class="form-control" id="targetAudience" name="target_audience" rows="2" required></textarea>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label required">Existing Website</label>
+                    <label class="form-label required" for="existingWebsite">Existing Website</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="existing_website" value="yes" required onchange="toggleCurrentUrl(this)">
                         <label class="form-check-label">Yes</label>
@@ -391,13 +396,13 @@
                         <label class="form-check-label">No</label>
                     </div>
                     <div id="currentUrlField" class="mt-2" style="display: none;">
-                        <label class="form-label">Current Website</label>
-                        <input type="text" class="form-control" name="current_url" id="current_url" placeholder="Enter website address">
+                        <label class="form-label" for="currentUrl">Current Website</label>
+                        <input type="text" class="form-control" id="currentUrl" name="current_url" placeholder="Enter website address">
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label required">Number of Pages</label>
+                    <label class="form-label required" for="numberOfPages">Number of Pages</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="pages_needed" value="basic" required>
                         <label class="form-check-label">Basic (1-5 pages)</label>
@@ -418,7 +423,7 @@
             <div class="form-section" data-section="3">
                 <h3 class="section-title">Design & Content</h3>
                 <div class="mb-3">
-                    <label class="form-label required">What content are you able to provide?</label>
+                    <label class="form-label required" for="contentProvided">What content are you able to provide?</label>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="assets[]" value="logo">
                         <label class="form-check-label">Logo</label>
@@ -446,7 +451,7 @@
             <div class="form-section" data-section="4">
                 <h3 class="section-title">Core Features</h3>
                 <div class="mb-3">
-                    <label class="form-label required">Required Features</label>
+                    <label class="form-label required" for="requiredFeatures">Required Features</label>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="features[]" value="contact_form">
                         <label class="form-check-label">Contact Form</label>
@@ -478,7 +483,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label required">Do you need e-commerce features?</label>
+                    <label class="form-label required" for="ecommerceFeatures">Do you need e-commerce features?</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="needs_ecommerce" value="yes" onchange="toggleEcommerceSection(this)">
                         <label class="form-check-label">Yes</label>
@@ -494,16 +499,16 @@
             <div class="form-section" id="ecommerceSection" style="display: none;">
                 <h3 class="section-title">E-commerce Details</h3>
                 <div class="mb-3">
-                    <label class="form-label">Approximate number of products:</label>
-                    <input type="number" class="form-control" name="product_count" min="1">
+                    <label class="form-label" for="productCount">Approximate number of products:</label>
+                    <input type="number" class="form-control" id="productCount" name="product_count" min="1">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Product categories (comma-separated):</label>
-                    <input type="text" class="form-control" name="product_categories">
+                    <label class="form-label" for="productCategories">Product categories (comma-separated):</label>
+                    <input type="text" class="form-control" id="productCategories" name="product_categories">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Payment gateway preference:</label>
-                    <input type="text" class="form-control" name="payment_gateway" placeholder="e.g., Stripe, PayPal, Square">
+                    <label class="form-label" for="paymentGateway">Payment gateway preference:</label>
+                    <input type="text" class="form-control" id="paymentGateway" name="payment_gateway" placeholder="e.g., Stripe, PayPal, Square">
                 </div>
             </div>
 
@@ -511,9 +516,9 @@
             <div class="form-section" data-section="5">
                 <h3 class="section-title">Timeline</h3>
                 <div class="mb-3">
-                    <label class="form-label required">Desired Completion Date</label>
+                    <label class="form-label required" for="completionDate">Desired Completion Date</label>
                     <span class="tooltip-icon" title="Standard projects typically take 4-8 weeks">?</span>
-                    <input type="date" class="form-control" name="completion_date" required>
+                    <input type="date" class="form-control" id="completionDate" name="completion_date" required>
                 </div>
             </div>
 
@@ -521,7 +526,7 @@
             <div class="form-section" data-section="6">
                 <h3 class="section-title">Technical Requirements</h3>
                 <div class="mb-3">
-                    <label class="form-label required">Domain & Hosting</label>
+                    <label class="form-label required" for="domainHosting">Domain & Hosting</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="domain_hosting" value="need_both" required>
                         <label class="form-check-label">Need new domain & hosting</label>
@@ -537,7 +542,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label required">Content Management</label>
+                    <label class="form-label required" for="contentManagement">Content Management</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="content_management" value="cms" required>
                         <label class="form-check-label">Yes - Need content management system</label>
@@ -553,19 +558,18 @@
             <div class="form-section" data-section="7">
                 <h3 class="section-title">Additional Notes</h3>
                 <div class="mb-3">
-                    <label class="form-label">Please list any other specific requirements:</label>
-                    <textarea class="form-control" name="additional_notes" rows="4"></textarea>
+                    <label class="form-label" for="additionalNotes">Please list any other specific requirements:</label>
+                    <textarea class="form-control" id="additionalNotes" name="additional_notes" rows="4"></textarea>
                 </div>
             </div>
 
             <div class="text-center mt-4">
-                <button type="submit" class="btn btn-primary btn-lg">Submit Form</button>
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
             </div>
         </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         // Global functions for HTML event handlers
         function toggleEcommerceSection(radio) {
@@ -607,16 +611,16 @@
                 <div class="contact-person-group">
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label required">Contact Person Name</label>
-                            <input type="text" class="form-control" name="contact_person[]" required>
+                            <label class="form-label required" for="contactPersonName">Contact Person Name</label>
+                            <input type="text" class="form-control" id="contactPersonName" name="contact_person[]" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label required">Email</label>
-                            <input type="email" class="form-control" name="contact_email[]" required>
+                            <label class="form-label required" for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="contact_email[]" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label required">Phone</label>
-                            <input type="tel" class="form-control" name="contact_phone[]" required>
+                            <label class="form-label required" for="phone">Phone</label>
+                            <input type="tel" class="form-control" id="phone" name="contact_phone[]" required>
                         </div>
                         <div class="col-12 text-end">
                             <button type="button" class="remove-contact-btn" onclick="removeContactPerson(this)">×</button>
@@ -680,8 +684,7 @@
             });
 
             // Form validation and submission
-            form.addEventListener('submit', function(event) {
-                console.log('Form submit triggered');
+            form.addEventListener('submit', async function(event) {
                 event.preventDefault();
                 
                 // Reset previous validation states
@@ -734,48 +737,41 @@
                     }
                 });
 
-                console.log('Form validation result:', isValid);
-
                 if (!isValid) {
                     document.getElementById('validationMessage').classList.add('show');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     return;
                 }
 
-                // If form is valid, submit using axios
-                console.log('Form is valid, submitting...');
-                
-                // Convert form data to object
-                const formData = new FormData(this);
-                const data = {};
-                formData.forEach((value, key) => {
-                    if (data[key]) {
-                        if (!Array.isArray(data[key])) {
-                            data[key] = [data[key]];
-                        }
-                        data[key].push(value);
+                // Show loading state
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.innerHTML;
+                submitButton.disabled = true;
+                submitButton.innerHTML = 'Submitting...';
+
+                try {
+                    const formData = new FormData(form);
+                    const response = await fetch('/', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams(formData).toString()
+                    });
+
+                    if (response.ok) {
+                        window.location.href = 'thank-you.html';
                     } else {
-                        data[key] = value;
+                        throw new Error('Form submission failed');
                     }
-                });
-
-                console.log('Submitting data:', data);
-
-                axios.post('https://getform.io/f/bqoojlnb', data, {
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => {
-                    console.log('Form submitted successfully:', response);
-                    window.location.href = 'thank-you.html';
-                })
-                .catch(error => {
-                    console.error('Error submitting form:', error);
+                } catch (error) {
+                    console.error('Error:', error);
                     document.getElementById('validationMessage').textContent = 'There was an error submitting the form. Please try again.';
                     document.getElementById('validationMessage').classList.add('show');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
+                    
+                    // Reset button
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                }
             });
 
             // Initial progress update
