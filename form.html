@@ -565,6 +565,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         // Global functions for HTML event handlers
         function toggleEcommerceSection(radio) {
@@ -741,28 +742,39 @@
                     return;
                 }
 
-                // If form is valid, submit using fetch
+                // If form is valid, submit using axios
                 console.log('Form is valid, submitting...');
+                
+                // Convert form data to object
                 const formData = new FormData(this);
+                const data = {};
+                formData.forEach((value, key) => {
+                    if (data[key]) {
+                        if (!Array.isArray(data[key])) {
+                            data[key] = [data[key]];
+                        }
+                        data[key].push(value);
+                    } else {
+                        data[key] = value;
+                    }
+                });
 
-                fetch(this.action, {
-                    method: 'POST',
-                    body: formData,
+                console.log('Submitting data:', data);
+
+                axios.post('https://getform.io/f/bqoojlnb', data, {
                     headers: {
                         'Accept': 'application/json'
                     }
                 })
                 .then(response => {
-                    if (response.ok) {
-                        window.location.href = 'thank-you.html';
-                    } else {
-                        throw new Error('Form submission failed');
-                    }
+                    console.log('Form submitted successfully:', response);
+                    window.location.href = 'thank-you.html';
                 })
                 .catch(error => {
-                    console.error('Error:', error);
+                    console.error('Error submitting form:', error);
                     document.getElementById('validationMessage').textContent = 'There was an error submitting the form. Please try again.';
                     document.getElementById('validationMessage').classList.add('show');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
 
