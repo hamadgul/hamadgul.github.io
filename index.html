@@ -860,6 +860,74 @@
                 font-size: 1rem;
             }
         }
+
+        .cta-section {
+            background: var(--secondary);
+            padding: 80px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-section .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: 800px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(120deg, var(--accent), #00c6ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .cta-button-large {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: var(--accent);
+            color: white;
+            border: none;
+            gap: 10px;
+            align-self: flex-start;
+        }
+
+        .cta-button-large:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
+            background: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .cta-section {
+                padding: 60px 0;
+            }
+            .cta-section .container {
+                padding: 0 20px;
+            }
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            .cta-section p {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1124,7 +1192,7 @@
         </div>
     </section>
 
-  <section id="contact" class="section contact-section">
+    <section id="contact" class="section contact-section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up" style="margin-bottom: 30px;">
                 <i class="fas fa-envelope"></i>
@@ -1144,6 +1212,17 @@
                     <i class="fab fa-github"></i>
                 </a>
             </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Ready to Build Your Dream Website?</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Let's turn your vision into reality. Take the first step towards creating your perfect website today.</p>
+            <a href="form.html" class="cta-button-large" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-rocket"></i>
+                Start Your Project
+            </a>
         </div>
     </section>
 

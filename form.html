@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Development Client Intake Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --background: #0a0a0a;
+            --text: #ffffff;
+            --accent: #007AFF;
+            --secondary: #1c1c1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--secondary);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, var(--accent), #00c6ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .form-check {
+            margin-bottom: 10px;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            opacity: 1;
+        }
+
+        .form-control::-webkit-input-placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            opacity: 1;
+        }
+
+        .form-control::-moz-placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            opacity: 1;
+        }
+
+        .form-control:-ms-input-placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            opacity: 1;
+        }
+
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            color: var(--text);
+            box-shadow: 0 0 0 0.2rem rgba(0, 122, 255, 0.25);
+        }
+
+        .form-control:focus::placeholder {
+            opacity: 0.8;
+        }
+
+        .form-label {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .form-label.required::after {
+            content: " *";
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .form-check-label {
+            color: var(--text);
+        }
+
+        .form-check-input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .form-check-input:checked {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .form-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(120deg, var(--accent), #00c6ff);
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .tooltip-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 16px;
+            font-size: 12px;
+            margin-left: 8px;
+            cursor: help;
+            color: white;
+        }
+
+        .contact-person-group {
+            position: relative;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .add-contact-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .add-contact-btn:hover {
+            transform: translateY(-2px);
+            background-color: #0056b3;
+        }
+
+        .add-contact-btn i {
+            font-size: 12px;
+        }
+
+        .remove-contact-btn {
+            background-color: transparent;
+            color: #dc3545;
+            border: 1px solid #dc3545;
+            border-radius: 5px;
+            padding: 4px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .remove-contact-btn:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .contact-person-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-count {
+            margin: 0;
+            font-size: 0.9em;
+            color: var(--accent);
+        }
+
+        .validation-message {
+            background-color: #dc3545;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .validation-message.show {
+            display: block;
+        }
+
+        .form-control.error {
+            border-color: #dc3545;
+        }
+
+        .error-text {
+            color: #dc3545;
+            font-size: 0.875em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-text.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+
+    <div class="container form-container">
+        <div class="form-header">
+            <h1 class="mb-4">Website Development Client Intake Form</h1>
+        </div>
+
+        <form id="clientIntakeForm" action="https://formsubmit.co/hamadgul1@gmail.com" method="POST">
+            <!-- Validation Message -->
+            <div id="validationMessage" class="validation-message">
+                Please fill out all required fields marked with an asterisk (*).
+            </div>
+
+            <!-- Basic Information -->
+            <div class="form-section" data-section="1">
+                <h3 class="section-title">Basic Information</h3>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="contact-person-group">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label required">Company Name</label>
+                                    <input type="text" class="form-control" name="company_name" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contactPersonsContainer">
+                        <div class="contact-person-group">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label required">Contact Person Name</label>
+                                    <input type="text" class="form-control" name="contact_person[]" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label required">Email</label>
+                                    <input type="email" class="form-control" name="contact_email[]" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label required">Phone</label>
+                                    <input type="tel" class="form-control" name="contact_phone[]" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end mt-2">
+                            <button type="button" class="add-contact-btn" onclick="addContactPerson()">
+                                <i class="fas fa-plus"></i> Add Another Contact Person
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label required">Company Overview</label>
+                        <textarea class="form-control" name="company_overview" rows="3" required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Website Requirements -->
+            <div class="form-section" data-section="2">
+                <h3 class="section-title">Website Requirements</h3>
+                <div class="mb-3">
+                    <label class="form-label required">Primary Purpose</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="website_purpose" value="business" required>
+                        <label class="form-check-label">Business/Company Website</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="website_purpose" value="store">
+                        <label class="form-check-label">Online Store</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="website_purpose" value="portfolio">
+                        <label class="form-check-label">Portfolio</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="website_purpose" value="other">
+                        <label class="form-check-label">Other</label>
+                        <input type="text" class="form-control mt-2" name="website_purpose_other">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label required">Target Audience</label>
+                    <textarea class="form-control" name="target_audience" rows="2" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label required">Existing Website</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="existing_website" value="yes" required onchange="toggleCurrentUrl(this)">
+                        <label class="form-check-label">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="existing_website" value="no" required onchange="toggleCurrentUrl(this)">
+                        <label class="form-check-label">No</label>
+                    </div>
+                    <div id="currentUrlField" class="mt-2" style="display: none;">
+                        <label class="form-label">Current Website</label>
+                        <input type="text" class="form-control" name="current_url" id="current_url" placeholder="Enter website address">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label required">Number of Pages</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pages_needed" value="basic" required>
+                        <label class="form-check-label">Basic (1-5 pages)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pages_needed" value="standard">
+                        <label class="form-check-label">Standard (6-10 pages)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pages_needed" value="custom">
+                        <label class="form-check-label">Custom</label>
+                        <input type="text" class="form-control mt-2" name="pages_needed_custom">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design & Content -->
+            <div class="form-section" data-section="3">
+                <h3 class="section-title">Design & Content</h3>
+                <div class="mb-3">
+                    <label class="form-label required">What content are you able to provide?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="assets[]" value="logo">
+                        <label class="form-check-label">Logo</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="assets[]" value="brand_colors">
+                        <label class="form-check-label">Brand Colors</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="assets[]" value="photos">
+                        <label class="form-check-label">Professional Photos</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="assets[]" value="content">
+                        <label class="form-check-label">Website Content/Text</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="assets[]" value="need_help">
+                        <label class="form-check-label">Need help with content creation</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Features -->
+            <div class="form-section" data-section="4">
+                <h3 class="section-title">Core Features</h3>
+                <div class="mb-3">
+                    <label class="form-label required">Required Features</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="features[]" value="contact_form">
+                        <label class="form-check-label">Contact Form</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="features[]" value="gallery">
+                        <label class="form-check-label">Image Gallery</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="features[]" value="blog">
+                        <label class="form-check-label">Blog Section</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="features[]" value="social">
+                        <label class="form-check-label">Social Media Integration</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="features[]" value="newsletter">
+                        <label class="form-check-label">Newsletter Signup</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="features[]" value="login">
+                        <label class="form-check-label">Customer Login Area</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="features[]" value="booking">
+                        <label class="form-check-label">Appointment Booking</label>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label required">Do you need e-commerce features?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="needs_ecommerce" value="yes" onchange="toggleEcommerceSection(this)">
+                        <label class="form-check-label">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="needs_ecommerce" value="no" onchange="toggleEcommerceSection(this)">
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-commerce Features -->
+            <div class="form-section" id="ecommerceSection" style="display: none;">
+                <h3 class="section-title">E-commerce Features</h3>
+                <div class="mb-3">
+                    <label class="form-label required">Number of Products</label>
+                    <input type="number" class="form-control" name="product_count" required>
+                </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="ecommerce[]" value="cart">
+                        <label class="form-check-label">Shopping Cart</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="ecommerce[]" value="payment">
+                        <label class="form-check-label">Payment Processing</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="ecommerce[]" value="inventory">
+                        <label class="form-check-label">Inventory Management</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="form-section" data-section="5">
+                <h3 class="section-title">Timeline</h3>
+                <div class="mb-3">
+                    <label class="form-label required">Desired Completion Date</label>
+                    <span class="tooltip-icon" title="Standard projects typically take 4-8 weeks">?</span>
+                    <input type="date" class="form-control" name="completion_date" required>
+                </div>
+            </div>
+
+            <!-- Technical Requirements -->
+            <div class="form-section" data-section="6">
+                <h3 class="section-title">Technical Requirements</h3>
+                <div class="mb-3">
+                    <label class="form-label required">Domain & Hosting</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="domain_hosting" value="need_both" required>
+                        <label class="form-check-label">Need new domain & hosting</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="domain_hosting" value="have_domain">
+                        <label class="form-check-label">Have domain only</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="domain_hosting" value="have_both">
+                        <label class="form-check-label">Have domain & hosting</label>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label required">Content Management</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="content_management" value="cms" required>
+                        <label class="form-check-label">Yes - Need content management system</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="content_management" value="static">
+                        <label class="form-check-label">No - Static website is fine</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Notes -->
+            <div class="form-section" data-section="7">
+                <h3 class="section-title">Additional Notes</h3>
+                <div class="mb-3">
+                    <label class="form-label">Please list any other specific requirements:</label>
+                    <textarea class="form-control" name="additional_notes" rows="4"></textarea>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">Submit Form</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Progress bar functionality
+        const form = document.getElementById('clientIntakeForm');
+        const progressBar = document.getElementById('progressBar');
+        const sections = document.querySelectorAll('.form-section');
+        
+        function updateProgress() {
+            const totalFields = form.querySelectorAll('input, select, textarea').length;
+            const filledFields = form.querySelectorAll('input:valid, select:valid, textarea:valid').length;
+            const progress = (filledFields / totalFields) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        form.addEventListener('input', updateProgress);
+
+        // Initialize tooltips
+        const tooltips = document.querySelectorAll('.tooltip-icon');
+        tooltips.forEach(tooltip => {
+            new bootstrap.Tooltip(tooltip);
+        });
+
+        // Form validation
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset previous validation states
+            document.getElementById('validationMessage').classList.remove('show');
+            form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+            form.querySelectorAll('.error-text').forEach(el => el.remove());
+            
+            // Check all required fields
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('error');
+                    
+                    // Add error message
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'error-text show';
+                    const label = field.closest('.mb-3, .col-md-6, .col-12')?.querySelector('.form-label');
+                    const fieldName = label ? label.textContent.replace(' *', '') : 'this field';
+                    errorDiv.textContent = `Please fill out ${fieldName}`;
+                    field.parentElement.appendChild(errorDiv);
+                }
+            });
+
+            // Check radio groups
+            const radioGroups = new Set();
+            form.querySelectorAll('input[type="radio"][required]').forEach(radio => {
+                radioGroups.add(radio.name);
+            });
+
+            radioGroups.forEach(groupName => {
+                const group = form.querySelectorAll(`input[name="${groupName}"]`);
+                const isChecked = Array.from(group).some(radio => radio.checked);
+                
+                if (!isChecked) {
+                    isValid = false;
+                    const container = group[0].closest('.mb-3');
+                    const label = container?.querySelector('.form-label');
+                    
+                    if (!container.querySelector('.error-text')) {
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'error-text show';
+                        errorDiv.textContent = `Please select ${label ? label.textContent.replace(' *', '') : 'an option'}`;
+                        container.appendChild(errorDiv);
+                    }
+                }
+            });
+
+            if (!isValid) {
+                document.getElementById('validationMessage').classList.add('show');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            // If we get here, the form is valid
+            console.log('Form is valid, submitting...');
+            
+            // Add hidden fields for FormSubmit.co
+            const formData = new FormData(form);
+            formData.append('_subject', 'New Website Development Inquiry');
+            formData.append('_template', 'table');
+            formData.append('_autoresponse', 'Thank you for your inquiry. We will get back to you shortly.');
+            
+            // Submit the form
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = 'thank-you.html';
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('validationMessage').textContent = 'There was an error submitting the form. Please try again.';
+                document.getElementById('validationMessage').classList.add('show');
+            });
+        });
+
+        // Toggle ecommerce section
+        function toggleEcommerceSection(radio) {
+            const ecommerceSection = document.getElementById('ecommerceSection');
+            ecommerceSection.style.display = radio.value === 'yes' ? 'block' : 'none';
+        }
+
+        // Function to toggle Current URL field
+        function toggleCurrentUrl(radio) {
+            const currentUrlField = document.getElementById('currentUrlField');
+            const currentUrlInput = document.getElementById('current_url');
+            
+            if (radio.value === 'yes') {
+                currentUrlField.style.display = 'block';
+            } else {
+                currentUrlField.style.display = 'none';
+                currentUrlInput.value = ''; // Clear the value when hidden
+            }
+            updateProgress();
+        }
+
+        // Contact person functionality
+        let contactCount = 1;
+        
+        function addContactPerson() {
+            contactCount++;
+            const container = document.getElementById('contactPersonsContainer');
+            const newContact = document.createElement('div');
+            newContact.innerHTML = `
+                <div class="contact-person-group">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label required">Contact Person Name</label>
+                            <input type="text" class="form-control" name="contact_person[]" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">Email</label>
+                            <input type="email" class="form-control" name="contact_email[]" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">Phone</label>
+                            <input type="tel" class="form-control" name="contact_phone[]" required>
+                        </div>
+                        <div class="col-12 text-end">
+                            <button type="button" class="remove-contact-btn" onclick="removeContactPerson(this)">×</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            // Insert before the "Add Another Contact Person" button
+            const addButton = container.querySelector('.text-end');
+            container.insertBefore(newContact, addButton);
+            updateProgress();
+        }
+
+        function removeContactPerson(button) {
+            const contactSection = button.parentElement.parentElement;
+            contactSection.remove();
+            contactCount--;
+            
+            // Update the contact person numbers
+            const headers = document.querySelectorAll('.contact-count');
+            if (headers.length === 1) {
+                // If only one contact remains, remove the number
+                headers[0].textContent = 'Contact Person';
+            } else {
+                // Otherwise, update the numbers
+                headers.forEach((header, index) => {
+                    header.textContent = `Contact Person ${index + 1}`;
+                });
+            }
+            updateProgress();
+        }
+    </script>
+</body>
+</html>
