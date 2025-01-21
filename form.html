@@ -786,9 +786,33 @@
             submitButton.disabled = true;
             submitButton.innerHTML = 'Sending...';
             
+            // Create a FormData object
+            const formData = new FormData(this);
+            
+            // Handle multiple contact persons
+            const contactGroups = document.querySelectorAll('.contact-person-group');
+            const contacts = [];
+            
+            contactGroups.forEach((group, index) => {
+                const contact = {
+                    name: group.querySelector('[name^="contact_name"]').value,
+                    email: group.querySelector('[name^="contact_email"]').value,
+                    phone: group.querySelector('[name^="contact_phone"]').value,
+                    role: group.querySelector('[name^="contact_role"]').value
+                };
+                contacts.push(contact);
+            });
+            
+            // Add contacts array to formData
+            formData.delete('contact_name[]');
+            formData.delete('contact_email[]');
+            formData.delete('contact_phone[]');
+            formData.delete('contact_role[]');
+            formData.append('contacts', JSON.stringify(contacts));
+            
             fetch(this.action, {
                 method: 'POST',
-                body: new FormData(this),
+                body: formData,
                 headers: {
                     'Accept': 'application/json'
                 }
@@ -807,6 +831,7 @@
                 }
             })
             .catch(error => {
+                console.error('Form submission error:', error);
                 alert('Oops! There was a problem submitting your form');
             })
             .finally(() => {
