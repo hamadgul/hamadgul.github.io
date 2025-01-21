@@ -328,16 +328,20 @@
                         <div class="contact-person-group">
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label class="form-label required" for="contactPersonName">Contact Person Name</label>
-                                    <input type="text" class="form-control" id="contactPersonName" name="contact_person[]" required>
+                                    <label class="form-label required" for="contact_name_1">Contact Person Name</label>
+                                    <input type="text" class="form-control" id="contact_name_1" name="contact_name[]" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label required" for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="contact_email[]" required>
+                                    <label class="form-label required" for="contact_email_1">Email</label>
+                                    <input type="email" class="form-control" id="contact_email_1" name="contact_email[]" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label required" for="phone">Phone</label>
-                                    <input type="tel" class="form-control" id="phone" name="contact_phone[]" required>
+                                    <label class="form-label required" for="contact_phone_1">Phone</label>
+                                    <input type="tel" class="form-control" id="contact_phone_1" name="contact_phone[]" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label required" for="contact_role_1">Role</label>
+                                    <input type="text" class="form-control" id="contact_role_1" name="contact_role[]" required>
                                 </div>
                             </div>
                         </div>
@@ -609,16 +613,20 @@
                 <div class="contact-person-group">
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label required" for="contactPersonName">Contact Person Name</label>
-                            <input type="text" class="form-control" id="contactPersonName" name="contact_person[]" required>
+                            <label class="form-label required" for="contact_name_${window.contactCount}">Contact Person Name</label>
+                            <input type="text" class="form-control" id="contact_name_${window.contactCount}" name="contact_name[]" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label required" for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="contact_email[]" required>
+                            <label class="form-label required" for="contact_email_${window.contactCount}">Email</label>
+                            <input type="email" class="form-control" id="contact_email_${window.contactCount}" name="contact_email[]" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label required" for="phone">Phone</label>
-                            <input type="tel" class="form-control" id="phone" name="contact_phone[]" required>
+                            <label class="form-label required" for="contact_phone_${window.contactCount}">Phone</label>
+                            <input type="tel" class="form-control" id="contact_phone_${window.contactCount}" name="contact_phone[]" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required" for="contact_role_${window.contactCount}">Role</label>
+                            <input type="text" class="form-control" id="contact_role_${window.contactCount}" name="contact_role[]" required>
                         </div>
                         <div class="col-12 text-end">
                             <button type="button" class="remove-contact-btn" onclick="removeContactPerson(this)">×</button>
@@ -785,30 +793,36 @@
             const originalText = submitButton.innerHTML;
             submitButton.disabled = true;
             submitButton.innerHTML = 'Sending...';
-            
-            // Create a FormData object
+
+            // Create FormData object
             const formData = new FormData(this);
             
-            // Handle multiple contact persons
+            // Get all contact groups
             const contactGroups = document.querySelectorAll('.contact-person-group');
-            const contacts = [];
             
-            contactGroups.forEach((group, index) => {
-                const contact = {
-                    name: group.querySelector('[name^="contact_name"]').value,
-                    email: group.querySelector('[name^="contact_email"]').value,
-                    phone: group.querySelector('[name^="contact_phone"]').value,
-                    role: group.querySelector('[name^="contact_role"]').value
-                };
-                contacts.push(contact);
-            });
-            
-            // Add contacts array to formData
+            // Remove existing contact arrays from formData
             formData.delete('contact_name[]');
             formData.delete('contact_email[]');
             formData.delete('contact_phone[]');
             formData.delete('contact_role[]');
-            formData.append('contacts', JSON.stringify(contacts));
+            
+            // Add each contact's information individually
+            contactGroups.forEach((group, index) => {
+                const nameInput = group.querySelector('[name="contact_name[]"]');
+                const emailInput = group.querySelector('[name="contact_email[]"]');
+                const phoneInput = group.querySelector('[name="contact_phone[]"]');
+                const roleInput = group.querySelector('[name="contact_role[]"]');
+                
+                if (nameInput && emailInput && phoneInput && roleInput) {
+                    formData.append(`contact_${index + 1}_name`, nameInput.value);
+                    formData.append(`contact_${index + 1}_email`, emailInput.value);
+                    formData.append(`contact_${index + 1}_phone`, phoneInput.value);
+                    formData.append(`contact_${index + 1}_role`, roleInput.value);
+                }
+            });
+            
+            // Add total number of contacts
+            formData.append('total_contacts', contactGroups.length);
             
             fetch(this.action, {
                 method: 'POST',
