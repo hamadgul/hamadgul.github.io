@@ -569,6 +569,16 @@
             margin-left: 0;
         }
 
+        @media (max-width: 768px) {
+            .profile-image {
+                width: 250px;
+                height: 250px;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
+
         .profile-image-container {
             width: 100%;
             display: flex;
@@ -935,10 +945,20 @@
         @media (max-width: 768px) {
             .typing-container {
                 width: 100%;
-                max-width: 450px;
+                max-width: 100%;
+                height: auto;
+                min-height: 2.5rem;
+                white-space: normal;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                padding: 0.75rem 1rem;
             }
             #typed-text {
-                font-size: 1rem;
+                white-space: normal;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                line-height: 1.4;
+                height: auto;
             }
         }
 
@@ -1138,6 +1158,64 @@
         .closing-bracket {
             font-size: 1.8rem;
             margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 15px;
+                overflow-x: hidden;
+            }
+
+            .code-style-header {
+                font-size: 1.5rem;
+                padding: 12px;
+                overflow: hidden;
+            }
+
+            .code-style-header pre {
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .code-style-header i {
+                font-size: 1.5rem;
+                margin-right: 10px;
+            }
+
+            .project-card {
+                width: 100%;
+                margin: 0;
+                padding: 15px;
+            }
+
+            .project-description {
+                width: 100%;
+                word-wrap: break-word;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .typing-container {
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            #typed-text {
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
     </style>
 </head>
