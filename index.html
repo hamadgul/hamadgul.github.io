@@ -70,8 +70,9 @@
         }
 
         .hero-title {
-            font-size: 4.5rem;
-            margin: 20px 0;
+            font-size: 4rem;
+            margin: 0;
+            padding: 0;
             color: var(--text);
             text-align: left;
             font-weight: bold;
@@ -165,9 +166,28 @@
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+            width: 100%;
+            padding: 0;
+        }
+
+        .subtitle-item {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .subtitle-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
         }
 
         .hero-buttons {
@@ -488,7 +508,13 @@
             }
 
             .hero-subtitle {
-                font-size: 1.2rem;
+                gap: 0.5rem;
+                margin: 1rem 0;
+            }
+
+            .subtitle-item {
+                font-size: 1.1rem;
+                padding: 0.3rem 0.8rem;
             }
 
             .section-title {
@@ -520,6 +546,26 @@
             .resume-button {
                 width: 100%;
                 justify-content: center;
+            }
+            
+            .static-text {
+                font-size: 1.1rem;
+                line-height: 1.5;
+                margin: 0.8rem 0;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+                padding-left: 1rem;
+            }
+
+            .static-text::after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 1px;
+                background: rgba(255, 255, 255, 0.1);
+                margin: 0.5rem 0;
             }
         }
 
@@ -1270,7 +1316,12 @@
                     <img src="/media/profile.jpeg" alt="Hamad Gul" class="profile-image" data-aos="fade-up" onerror="this.onerror=null; console.error('Failed to load image'); this.style.display='none';">
                 </div>
                 <h1 class="hero-title">Hamad Gul</h1>
-                <div class="static-text">NYC Based Product Manager | Engineer | Innovator | Problem Solver</div>
+                <div class="hero-subtitle">
+                    <span class="subtitle-item">Technical Product Manager</span>
+                    <span class="subtitle-item">Engineer</span>
+                    <span class="subtitle-item">Innovator</span>
+                    <span class="subtitle-item">Problem Solver</span>
+                </div>
                 <div class="typing-container">
                     <div id="typed-text"></div>
                 </div>
