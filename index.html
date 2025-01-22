@@ -928,6 +928,48 @@
                 font-size: 1.1rem;
             }
         }
+
+        /* Modal Navigation Arrows */
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .modal-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-nav {
+                padding: 10px;
+                font-size: 18px;
+                width: 40px;
+                height: 40px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1242,18 +1284,10 @@
 
     <!-- Modals -->
     <div id="rwd-modal" class="modal">
-        <span class="close-modal" onclick="closeModal('rwd-modal')">&times;</span>
         <div class="modal-content">
-            <div class="modal-body">
-                <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSnHFqSG7V1y7P9scv33cagm0I_LJ6Oop2BBc5lJn-rTQhJ-viU1ugMDmx1MN3GlYJhekfRu2v0Xzsq/embed?start=false&loop=false&delayms=15000" 
-                        frameborder="0" 
-                        width="100%"
-                        height="100%"
-                        allowfullscreen="true" 
-                        mozallowfullscreen="true" 
-                        webkitallowfullscreen="true">
-                </iframe>
-            </div>
+            <span class="modal-close" onclick="closeModal('rwd-modal')">&times;</span>
+    
+            <iframe id="slides-frame" src="https://docs.google.com/presentation/d/e/2PACX-1vSnHFqSG7V1y7P9scv33cagm0I_LJ6Oop2BBc5lJn-rTQhJ-viU1ugMDmx1MN3GlYJhekfRu2v0Xzsq/embed?start=false&loop=false&delayms=0" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
         </div>
     </div>
 
@@ -1337,6 +1371,33 @@
             if (event.target.className === 'modal') {
                 closeModal(modalId);
             }
+        }
+
+        function changeSlide(direction) {
+            const frame = document.getElementById('slides-frame');
+            if (!frame) return;
+            
+            // Get the current slide number from the URL or default to 1
+            const currentUrl = frame.src;
+            const slideMatch = currentUrl.match(/slide=(\d+)/);
+            let currentSlide = slideMatch ? parseInt(slideMatch[1]) : 1;
+            
+            // Calculate the new slide number
+            currentSlide += direction;
+            
+            // Ensure the slide number stays within bounds (assuming 10 slides, adjust as needed)
+            if (currentSlide < 1) currentSlide = 1;
+            if (currentSlide > 10) currentSlide = 10;
+            
+            // Update the iframe URL with the new slide number
+            let newUrl = currentUrl;
+            if (slideMatch) {
+                newUrl = currentUrl.replace(/slide=\d+/, `slide=${currentSlide}`);
+            } else {
+                newUrl = currentUrl + `&slide=${currentSlide}`;
+            }
+            
+            frame.src = newUrl;
         }
     </script>
 </body>
