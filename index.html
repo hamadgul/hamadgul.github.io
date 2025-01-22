@@ -1092,6 +1092,24 @@
             color: #f1fa8c;
         }
 
+        .code-style-header .mobile-code {
+            display: none;
+        }
+
+        .code-style-header .desktop-code {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .code-style-header .desktop-code {
+                display: none;
+            }
+
+            .code-style-header .mobile-code {
+                display: block;
+            }
+        }
+
         .section-separator {
             width: 100%;
             height: 1px;
@@ -1263,7 +1281,8 @@
             <div class="portfolio-category" data-aos="fade-up">
                 <h3 class="category-title code-style-header">
                     <i class="fas fa-code"></i>
-                    <pre><span class="function-keyword">function</span> As a Developer<span class="code-bracket">() {</span></pre>
+                    <pre class="desktop-code"><span class="function-keyword">function</span> As a Developer<span class="code-bracket">() {</span></pre>
+                    <pre class="mobile-code">As a Developer<span class="code-bracket">() {</span></pre>
                 </h3>
                 <h4 class="subcategory-title">
                     <i class="fas fa-globe"></i>
