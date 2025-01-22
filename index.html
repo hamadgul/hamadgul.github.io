@@ -1098,6 +1098,29 @@
             background: rgba(255, 255, 255, 0.1);
             margin: 40px 0;
         }
+        
+        .code-style-header {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            padding: 15px;
+            width: 100%;
+            white-space: nowrap;
+        }
+
+        .code-style-header i {
+            font-size: 1.8rem;
+            margin-right: 12px;
+        }
+
+        .code-bracket {
+            color: #FFD700;  /* Code editor yellow */
+        }
+
+        .closing-bracket {
+            font-size: 1.8rem;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -1240,9 +1263,7 @@
             <div class="portfolio-category" data-aos="fade-up">
                 <h3 class="category-title code-style-header">
                     <i class="fas fa-code"></i>
-                    <pre><span class="function-keyword">function</span> As a Developer<span class="parentheses">() {</span>
-    <span class="return-keyword">return</span> <span class="string-content">"Development Projects"</span>;
-<span class="parentheses">}</span></pre>
+                    <pre><span class="function-keyword">function</span> As a Developer<span class="code-bracket">() {</span></pre>
                 </h3>
                 <h4 class="subcategory-title">
                     <i class="fas fa-globe"></i>
@@ -1304,6 +1325,7 @@
                     </div>
                 </div>
             </div>
+            <h3 class="closing-bracket"><span class="code-bracket">}</span></h3>
         </div>
     </section>
 
