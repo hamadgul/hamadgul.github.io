@@ -56,17 +56,30 @@
 
         header {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
+            display: block;
             position: relative;
-            padding: 100px 0;
         }
 
         .hero-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 100px 20px;
             text-align: left;
+        }
+
+        .profile-image-container {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .profile-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0;
         }
 
         .hero-title {
@@ -1302,6 +1315,24 @@
                 padding: 0;
                 margin: 0;
                 width: 100%;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            header {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+                min-height: auto;
+            }
+
+            .hero-content {
+                padding: 0;
             }
         }
     </style>
