@@ -32,6 +32,8 @@
             --text: #ffffff;
             --accent: #007AFF;
             --secondary: #1c1c1e;
+            --card-bg: #1c1c1e;
+            --card-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
         * {
@@ -413,15 +415,14 @@
         }
 
         .skill-card {
-            background: var(--secondary);
-            padding: 25px;
+            background: var(--card-bg);
             border-radius: 15px;
-            transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border: 2px solid transparent;
-            text-align: left;
-            height: 180px;
-            display: flex;
-            flex-direction: column;
+            padding: 20px;
+            margin: 10px;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
         }
 
         .skill-card:hover {
@@ -451,12 +452,14 @@
         }
 
         .certification-card {
-            background: var(--secondary);
-            padding: 25px;
+            background: var(--card-bg);
             border-radius: 15px;
-            transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border: 2px solid transparent;
-            text-align: center;
+            padding: 20px;
+            margin: 10px;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
         }
 
         .certification-card:hover {
@@ -1347,24 +1350,31 @@
                 overflow: visible;
                 height: auto;
                 min-height: auto;
+                max-height: none;
             }
 
             .certification-card {
                 overflow: visible;
                 height: auto;
                 min-height: auto;
+                max-height: none;
             }
 
             .project-description {
                 overflow: visible;
+                max-height: none;
             }
 
-            .skill-card p {
-                overflow: visible;
-            }
-
+            .skill-card p, 
             .certification-card p {
                 overflow: visible;
+                max-height: none;
+            }
+
+            .skills-grid,
+            .certifications-grid {
+                overflow: visible;
+                max-height: none;
             }
         }
     </style>
